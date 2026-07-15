@@ -172,9 +172,6 @@ metric: true
 
 No player database information, quest contents or private server data is collected.
 
-## License
-
-Add the license selected for your public release here.
 
 ## Author
 
