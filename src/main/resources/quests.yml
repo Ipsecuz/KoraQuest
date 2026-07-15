@@ -1,0 +1,401 @@
+# KoraQuest - Quest Definitions
+# Built-in types: KILL, BREAK, PLACE, CRAFT, FISH, ENCHANT, BREED, TAME, CONSUME, SMELT, SHEAR, CUSTOM
+# CUSTOM can represent any objective. Progress it with:
+# /quest admin progress <player> <quest-id> [amount]
+# Every quest title, lore and reward command is configured directly here.
+# rewards: is only a list of custom console commands. KoraQuest does not require Vault or a specific economy/crate plugin.
+# Supported placeholders: %player%, %uuid%, %quest_id%, %quest_name%, %difficulty%, %difficulty_name%, %progress%, %required%
+# Optional random number syntax inside a command: {random:min-max}
+# Example: 'eco give %player% {random:100000-200000}'
+
+quests:
+  easy_zombie_cleaner:
+    difficulty: easy
+    type: KILL
+    target: ZOMBIE
+    required: 15
+    material: ROTTEN_FLESH
+    title: '&#75FF75ᴅᴏɴ ᴅẹᴘ ᴢᴏᴍʙɪᴇ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f15 Zombie &#8A8A8Atừ mob farm.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_skeleton_guard:
+    difficulty: easy
+    type: KILL
+    target: SKELETON
+    required: 12
+    material: BONE
+    title: '&#75FF75ɴɢườɪ ɢáᴄ xươɴɢ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f12 Skeleton &#8A8A8Atừ mob farm.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_stone_miner:
+    difficulty: easy
+    type: BREAK
+    target: STONE
+    required: 128
+    material: STONE
+    title: '&#75FF75ᴛʜợ ᴍỏ ᴛậᴘ ꜱự'
+    lore:
+      - '&#8A8A8AĐào &f128 Stone &#8A8A8Atừ đảo hoặc generator.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_cobble_worker:
+    difficulty: easy
+    type: BREAK
+    target: COBBLESTONE
+    required: 192
+    material: COBBLESTONE
+    title: '&#75FF75ᴋʜᴀɪ ᴛʜáᴄ ᴄᴏʙʙʟᴇ'
+    lore:
+      - '&#8A8A8AĐào &f192 Cobblestone &#8A8A8Atừ generator.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_oak_logger:
+    difficulty: easy
+    type: BREAK
+    target: OAK_LOG
+    required: 64
+    material: OAK_LOG
+    title: '&#75FF75ᴛɪềᴜ ᴘʜᴜ ʀừɴɢ ꜱồɪ'
+    lore:
+      - '&#8A8A8AChặt &f64 Oak Log &#8A8A8Atrên đảo.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_coal_runner:
+    difficulty: easy
+    type: BREAK
+    target: COAL_ORE
+    required: 24
+    material: COAL
+    title: '&#75FF75ᴛìᴍ ᴋɪếᴍ ᴛʜᴀɴ'
+    lore:
+      - '&#8A8A8AĐào &f24 Coal Ore &#8A8A8Atừ ore generator.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_fisher:
+    difficulty: easy
+    type: FISH
+    target: ANY
+    required: 8
+    material: FISHING_ROD
+    title: '&#75FF75ᴄầɴ ᴛʜủ ɴʜỏ'
+    lore:
+      - '&#8A8A8ACâu thành công &f8 lần &#8A8A8Atại đảo.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_torch_builder:
+    difficulty: easy
+    type: PLACE
+    target: TORCH
+    required: 24
+    material: TORCH
+    title: '&#75FF75ᴛʜắᴘ ꜱáɴɢ ʟốɪ đɪ'
+    lore:
+      - '&#8A8A8AĐặt &f24 Torch &#8A8A8Atrên đảo.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_bread_baker:
+    difficulty: easy
+    type: CRAFT
+    target: BREAD
+    required: 16
+    material: BREAD
+    title: '&#75FF75ʟò ʙáɴʜ ᴍớɪ'
+    lore:
+      - '&#8A8A8ACraft &f16 Bread &#8A8A8Atừ farm lúa.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_farmer:
+    difficulty: easy
+    type: BREAK
+    target: WHEAT
+    required: 64
+    material: WHEAT
+    title: '&#75FF75ᴍùᴀ ᴠụ đầᴜ ᴛɪêɴ'
+    lore:
+      - '&#8A8A8AThu hoạch &f64 Wheat &#8A8A8Atrên đảo.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  medium_zombie_hunter:
+    difficulty: medium
+    type: KILL
+    target: ZOMBIE
+    required: 60
+    material: IRON_SWORD
+    title: '&#FFD36Aᴛʜợ ꜱăɴ ᴢᴏᴍʙɪᴇ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f60 Zombie &#8A8A8Abằng mob farm.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_creeper_control:
+    difficulty: medium
+    type: KILL
+    target: CREEPER
+    required: 35
+    material: GUNPOWDER
+    title: '&#FFD36Aᴋɪểᴍ ꜱᴏáᴛ ᴄʀᴇᴇᴘᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f35 Creeper &#8A8A8Atừ mob farm.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_iron_miner:
+    difficulty: medium
+    type: BREAK
+    target: IRON_ORE
+    required: 64
+    material: IRON_INGOT
+    title: '&#FFD36Aᴍỏ ꜱắᴛ ɴóɴɢ'
+    lore:
+      - '&#8A8A8AĐào &f64 Iron Ore &#8A8A8Atừ ore generator.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_diamond_spark:
+    difficulty: medium
+    type: BREAK
+    target: DIAMOND_ORE
+    required: 20
+    material: DIAMOND
+    title: '&#FFD36Aáɴʜ ᴋɪᴍ ᴄươɴɢ'
+    lore:
+      - '&#8A8A8AĐào &f20 Diamond Ore &#8A8A8Atừ ore generator.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_deepslate_grind:
+    difficulty: medium
+    type: BREAK
+    target: DEEPSLATE
+    required: 256
+    material: DEEPSLATE
+    title: '&#FFD36Aɴɢʜɪềɴ ᴅᴇᴇᴘꜱʟᴀᴛᴇ'
+    lore:
+      - '&#8A8A8AĐào &f256 Deepslate &#8A8A8Atại khu mine/generator.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_enderman_watch:
+    difficulty: medium
+    type: KILL
+    target: ENDERMAN
+    required: 25
+    material: ENDER_PEARL
+    title: '&#FFD36Aᴋẻ ɢáᴄ ᴇɴᴅᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f25 Enderman &#8A8A8Atừ farm.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_fishing_trip:
+    difficulty: medium
+    type: FISH
+    target: ANY
+    required: 35
+    material: COD
+    title: '&#FFD36Aᴄʜᴜʏếɴ ᴄâᴜ ᴅàɪ'
+    lore:
+      - '&#8A8A8ACâu thành công &f35 lần &#8A8A8Atại đảo.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_lantern_path:
+    difficulty: medium
+    type: PLACE
+    target: LANTERN
+    required: 48
+    material: LANTERN
+    title: '&#FFD36Aᴄᴏɴ đườɴɢ ʟồɴɢ đèɴ'
+    lore:
+      - '&#8A8A8AĐặt &f48 Lantern &#8A8A8Atrang trí đảo.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_golden_cook:
+    difficulty: medium
+    type: CRAFT
+    target: GOLDEN_APPLE
+    required: 4
+    material: GOLDEN_APPLE
+    title: '&#FFD36Aʙữᴀ ăɴ ʜᴏàɴɢ ᴋɪᴍ'
+    lore:
+      - '&#8A8A8ACraft &f4 Golden Apple&#8A8A8A.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_enchanter:
+    difficulty: medium
+    type: ENCHANT
+    target: ANY
+    required: 5
+    material: ENCHANTING_TABLE
+    title: '&#FFD36Aᴘʜù ᴛʜủʏ ᴛậᴘ ꜱự'
+    lore:
+      - '&#8A8A8AEnchant vật phẩm &f5 lần&#8A8A8A.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  hard_blaze_slayer:
+    difficulty: hard
+    type: KILL
+    target: BLAZE
+    required: 90
+    material: BLAZE_ROD
+    title: '&#FF5C5Cᴛʜợ ꜱăɴ ʙʟᴀᴢᴇ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f90 Blaze &#8A8A8Atừ nether farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_wither_guard:
+    difficulty: hard
+    type: KILL
+    target: WITHER_SKELETON
+    required: 55
+    material: WITHER_SKELETON_SKULL
+    title: '&#FF5C5Cᴠệ ʙɪɴʜ ᴡɪᴛʜᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f55 Wither Skeleton &#8A8A8Atừ farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_ancient_debris:
+    difficulty: hard
+    type: BREAK
+    target: ANCIENT_DEBRIS
+    required: 8
+    material: ANCIENT_DEBRIS
+    title: '&#FF5C5Cᴅấᴜ ᴠếᴛ ᴄổ đạɪ'
+    lore:
+      - '&#8A8A8AĐào &f8 Ancient Debris &#8A8A8Anếu server có nether/ore gen.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_ender_trial:
+    difficulty: hard
+    type: KILL
+    target: ENDERMAN
+    required: 120
+    material: ENDER_EYE
+    title: '&#FF5C5Cᴛʜử ᴛʜáᴄʜ ᴇɴᴅᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f120 Enderman &#8A8A8Atừ island/end farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_piglin_farm:
+    difficulty: hard
+    type: KILL
+    target: PIGLIN
+    required: 70
+    material: GOLDEN_AXE
+    title: '&#FF5C5Cᴄʜɪếɴ ʙɪɴʜ ɴᴇᴛʜᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f70 Piglin &#8A8A8Atừ nether farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_diamond_rush:
+    difficulty: hard
+    type: BREAK
+    target: DIAMOND_ORE
+    required: 32
+    material: DIAMOND_PICKAXE
+    title: '&#FF5C5Cᴄơɴ ꜱốᴛ ᴋɪᴍ ᴄươɴɢ'
+    lore:
+      - '&#8A8A8AĐào &f32 Diamond Ore &#8A8A8Atừ ore generator.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_netherite_forge:
+    difficulty: hard
+    type: CRAFT
+    target: NETHERITE_INGOT
+    required: 2
+    material: NETHERITE_INGOT
+    title: '&#FF5C5Cʟò ʀèɴ ɴᴇᴛʜᴇʀɪᴛᴇ'
+    lore:
+      - '&#8A8A8ACraft &f2 Netherite Ingot&#8A8A8A.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_master_enchanter:
+    difficulty: hard
+    type: ENCHANT
+    target: ANY
+    required: 8
+    material: EXPERIENCE_BOTTLE
+    title: '&#FF5C5Cʙậᴄ ᴛʜầʏ ᴘʜù ᴘʜéᴘ'
+    lore:
+      - '&#8A8A8AEnchant vật phẩm &f8 lần&#8A8A8A.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_deep_fishing:
+    difficulty: hard
+    type: FISH
+    target: ANY
+    required: 60
+    material: TROPICAL_FISH
+    title: '&#FF5C5Cđạɪ ᴅươɴɢ ɢọɪ ᴛêɴ'
+    lore:
+      - '&#8A8A8ACâu thành công &f60 lần &#8A8A8Atại đảo.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_obsidian_breaker:
+    difficulty: hard
+    type: BREAK
+    target: OBSIDIAN
+    required: 96
+    material: OBSIDIAN
+    title: '&#FF5C5Cᴘʜá ᴠỡ ʜắᴄ ᴛʜạᴄʜ'
+    lore:
+      - '&#8A8A8AĐào &f96 Obsidian &#8A8A8Atừ generator/farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'

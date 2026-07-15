@@ -1,0 +1,143 @@
+prefix: '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8» &f'
+messages:
+  no-permission: '%prefix%&#FF5C5CYou do not have permission to use this command.'
+  player-only: '%prefix%&#FF5C5CThis command can only be used in-game.'
+  unknown-command: '%prefix%&#FF5C5CUnknown command. Use &e/quest help&#FF5C5C.'
+  loading: '%prefix%&#FFD36AQuest data is still loading. Please try again.'
+  reloaded: '%prefix%&#75FF75Configuration, language and quests reloaded.'
+  forced-reset: '%prefix%&#75FF75The daily quest list has been regenerated.'
+  daily-reset: '%prefix%&#FFD36AToday''s quest list has been refreshed! Use &e/quest&#FFD36A to view it.'
+  quest-not-found: '%prefix%&#FF5C5CQuest &e%quest_id% &#FF5C5Cwas not found.'
+  quest-not-daily: '%prefix%&#FF5C5CThis quest is not in today''s pool.'
+  quest-already-active: '%prefix%&#FFD36AYou have already accepted this quest.'
+  quest-already-completed: '%prefix%&#FF5C5CYou already completed this quest in the current cycle.'
+  quest-active-limit: '%prefix%&#FF5C5CYou can only have &e%limit% &#FF5C5Cactive quests.'
+  quest-accepted: '%prefix%&#75FF75Accepted quest &#FFFFFF%quest_name%&#75FF75.'
+  quest-cancelled: '%prefix%&#FFD36ACancelled quest &#FFFFFF%quest_name%&#FFD36A.'
+  quest-not-active: '%prefix%&#FF5C5CYou have not accepted this quest.'
+  quest-not-ready: '%prefix%&#FFD36AQuest progress: &f%progress%&7/&f%required%&#FFD36A.'
+  quest-progress: '%prefix%&#72D6FF%quest_name% &8» &f%progress%&7/&f%required%'
+  quest-ready: '%prefix%&#75FF75Quest &#FFFFFF%quest_name% &#75FF75is complete! Open &e/quest &#75FF75to claim it.'
+  quest-completed: '%prefix%&#75FF75Completed &#FFFFFF%quest_name%&#75FF75! The rewards have been delivered.'
+  reward-command-failed: '%prefix%&#FF5C5CA custom reward command could not be executed. Contact an administrator.'
+  active-empty: '%prefix%&#FFD36AYou have no active quests.'
+  active-header: '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8- &#FFFFFFᴀᴄᴛɪᴠᴇ ǫᴜᴇꜱᴛꜱ'
+  active-line: '&#8A8A8A- &#FFFFFF%quest_name% &8(&f%progress%&7/&f%required%&8)'
+  admin-create-usage: '%prefix%&#FFD36AUsage: &e/quest admin create <id> <easy|medium|hard> <type> <target> <required> [material]'
+  admin-created: '%prefix%&#75FF75Created quest &f%quest_id%&#75FF75. Edit title, lore and rewards in quests.yml.'
+  admin-create-exists: '%prefix%&#FF5C5CThat quest ID already exists.'
+  admin-create-invalid-id: '%prefix%&#FF5C5CIDs may only contain a-z, 0-9, underscores and hyphens.'
+  admin-delete-usage: '%prefix%&#FFD36AUsage: &e/quest admin delete <id>'
+  admin-deleted: '%prefix%&#75FF75Deleted quest &f%quest_id%&#75FF75.'
+  admin-progress-usage: '%prefix%&#FFD36AUsage: &e/quest admin progress <player> <quest-id> [amount]'
+  admin-progressed: '%prefix%&#75FF75Added &f%amount% &#75FF75progress to &f%player%&#75FF75.'
+  player-not-found: '%prefix%&#FF5C5CThat player is not online.'
+  invalid-number: '%prefix%&#FF5C5CInvalid number.'
+  invalid-type: '%prefix%&#FF5C5CInvalid quest type. Use &e/quest admin types&#FF5C5C.'
+  invalid-target: '%prefix%&#FF5C5CInvalid target for the selected quest type.'
+  validation-ok: '%prefix%&#75FF75No quest configuration problems were found.'
+  validation-header: '%prefix%&#FFD36AFound %amount% quest configuration problems:'
+  validation-line: '&#8A8A8A- &f%error%'
+  types-header: '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8- &#FFFFFFᴛʏᴘᴇꜱ'
+  types-line: '&#8A8A8A- &f%type% &7| target: %target_hint%'
+  update-available: '%prefix%&#FFD36AA new version is available: &f%latest% &#8A8A8A(current: %current%)&#FFD36A.'
+  update-current: '%prefix%&#75FF75You are using the latest version &f%current%&#75FF75.'
+  update-not-configured: '%prefix%&#FFD36AThe update checker has no Spigot resource ID.'
+  version-line: '%prefix%&#FFFFFFVersion: &e%current% &8| &#FFFFFFPlatform: &e%platform%'
+  help:
+  - '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8- &#FFFFFFᴄᴏᴍᴍᴀɴᴅꜱ'
+  - '&#8A8A8A/quest &7- Open the quest menu'
+  - '&#8A8A8A/quest active &7- View active quests'
+  - '&#8A8A8A/quest accept <id> &7- Accept a quest'
+  - '&#8A8A8A/quest cancel <id> &7- Cancel a quest'
+  - '&#8A8A8A/quest complete <id> &7- Claim a completed quest'
+  - '&#8A8A8A/quest version &7- View version information'
+  - '&#8A8A8A/quest admin ... &7- Administration tools'
+  - '&#8A8A8A/quest update &7- Check for updates'
+  admin-help:
+  - '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8- &#FFFFFFᴀᴅᴍɪɴ'
+  - '&#8A8A8A/quest admin reload &7- Reload configuration'
+  - '&#8A8A8A/quest admin reset &7- Regenerate daily quests'
+  - '&#8A8A8A/quest admin create ... &7- Create a quest template'
+  - '&#8A8A8A/quest admin delete <id> &7- Delete a quest'
+  - '&#8A8A8A/quest admin progress <player> <id> [amount] &7- Hook CUSTOM quests'
+  - '&#8A8A8A/quest admin validate &7- Validate quest configuration'
+  - '&#8A8A8A/quest admin types &7- List quest types'
+  reload-failed: '%prefix%&#FF5C5CThe plugin could not be reloaded. Check the console.'
+  quest-action-usage: '%prefix%&#FFD36AUsage: &e/quest %action% <quest-id>'
+  invalid-material: '%prefix%&#FF5C5CInvalid material.'
+  admin-progress-no-change: '%prefix%&#FF5C5CProgress was not changed. The player must have an active quest and the quest ID must be valid.'
+  update-disabled: '%prefix%&#FFD36AThe update checker is disabled in config.yml.'
+  update-checking: '%prefix%&#FFD36AChecking for a new version...'
+  update-check-failed: '%prefix%&#FF5C5CThe update check could not be completed right now.'
+gui:
+  title: '&#FFB84D&lᴋᴏʀᴀ ǫᴜᴇꜱᴛ'
+  filler-name: '&r'
+  info:
+    name: '&#FFD36Aᴛᴏᴅᴀʏ''ꜱ ǫᴜᴇꜱᴛꜱ'
+    lore:
+    - '&#8A8A8AReset in: &f%reset_time%'
+    - '&#8A8A8ATotal quests: &f%daily_total%'
+    - ''
+    - '&#75FF75Easy: &f%easy_count% &8(&f%easy_chance%%%&8)'
+    - '&#FFD36AMedium: &f%medium_count% &8(&f%medium_chance%%%&8)'
+    - '&#FF5C5CHard: &f%hard_count% &8(&f%hard_chance%%%&8)'
+  active:
+    name: '&#72D6FFᴀᴄᴛɪᴠᴇ ǫᴜᴇꜱᴛꜱ'
+    lore:
+    - '&#8A8A8AUse /quest active for a text list.'
+    - '&#8A8A8ALeft click: accept or claim.'
+    - '&#8A8A8ARight click: cancel an active quest.'
+  difficulty:
+    easy:
+      name: '&#75FF75ᴇᴀꜱʏ'
+      lore:
+      - '&#8A8A8AToday: &f%daily_count%'
+      - '&#8A8A8ARandom weight: &f%daily_weight%%%'
+    medium:
+      name: '&#FFD36Aᴍᴇᴅɪᴜᴍ'
+      lore:
+      - '&#8A8A8AToday: &f%daily_count%'
+      - '&#8A8A8ARandom weight: &f%daily_weight%%%'
+    hard:
+      name: '&#FF5C5Cʜᴀʀᴅ'
+      lore:
+      - '&#8A8A8AToday: &f%daily_count%'
+      - '&#8A8A8ARandom weight: &f%daily_weight%%%'
+  quest:
+    details:
+    - ''
+    - '&#8A8A8AQuest: &f%quest_name%'
+    - '&#8A8A8AProgress: &f%progress%&7/&f%required%'
+    - '&#8A8A8ADifficulty: %difficulty_name%'
+    state:
+      completed:
+      - ''
+      - '&#FF5C5CCompleted during the current cycle.'
+      ready:
+      - ''
+      - '&#75FF75Left click to claim rewards.'
+      active:
+      - ''
+      - '&#72D6FFThis quest is active.'
+      - '&#FFD36ARight click to cancel.'
+      available:
+      - ''
+      - '&#75FF75Left click to accept.'
+objective-target-hints:
+  KILL: EntityType or ANY
+  BREAK: Material or ANY
+  PLACE: Material or ANY
+  CRAFT: Material or ANY
+  FISH: Material/EntityType or ANY
+  ENCHANT: Material or ANY
+  BREED: EntityType or ANY
+  TAME: EntityType or ANY
+  CONSUME: Material or ANY
+  SMELT: Material or ANY
+  SHEAR: EntityType or ANY
+  CUSTOM: Any string
+validation-errors:
+  missing-quests-section: quests.yml is missing the quests section.
+  invalid-quest-id: Quest %quest_id% has an invalid ID.
+  invalid-quest: Quest %quest_id% contains invalid data. Check the console for details.

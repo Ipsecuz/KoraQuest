@@ -1,0 +1,19 @@
+name: KoraQuest
+version: 1.0
+main: dev.ipseucz.koraquest.KoraQuestPlugin
+api-version: '1.21'
+author: Ipsecuz_
+description: Configurable quest system for Paper, Spigot and Folia
+folia-supported: true
+libraries:
+  - org.xerial:sqlite-jdbc:3.53.2.0
+commands:
+  quest:
+    aliases: [quests, koraquest]
+permissions:
+  koraquest.use:
+    default: true
+  koraquest.admin:
+    default: op
+  koraquest.update-notify:
+    default: op

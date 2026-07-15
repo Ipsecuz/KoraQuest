@@ -1,0 +1,56 @@
+# KoraQuest 1.0
+# Hex color: &#RRGGBB
+
+# Language file inside plugins/KoraQuest/message/. Built-in: messages.yml (Vietnamese), messages_en.yml (English).
+language-file: messages.yml
+
+# bStats plugin id is compiled internally. Only this toggle is exposed.
+metric: true
+
+settings:
+  reset-interval-hours: 24
+  max-active-quests-per-player: 3
+  broadcast-daily-reset: true
+  send-progress-messages: true
+  # Send a progress message each N percent. 10 = 10%, 20%, 30%...
+  progress-message-percent-step: 10
+  # Async SQLite dirty-cache flush interval.
+  database-flush-ticks: 100
+
+# Random quest selection each cycle.
+daily-random:
+  enabled: true
+  total-quests: 12
+  weights:
+    easy: 50
+    medium: 30
+    hard: 20
+
+# Used only if daily-random.enabled is false.
+daily-pool:
+  easy: 5
+  medium: 4
+  hard: 3
+
+# Update checking uses the official Spigot legacy version endpoint.
+# Set resource-id after the resource is published on SpigotMC.
+update-checker:
+  enabled: true
+  resource-id: 0
+  notify-console: true
+  notify-permission: koraquest.update-notify
+
+gui:
+  size: 54
+  quest-slots: [19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  filler-material: BLACK_STAINED_GLASS_PANE
+  info:
+    slot: 4
+    material: CLOCK
+  active:
+    slot: 49
+    material: BOOK
+  difficulties:
+    easy: {slot: 10, material: LIME_DYE}
+    medium: {slot: 13, material: YELLOW_DYE}
+    hard: {slot: 16, material: RED_DYE}
