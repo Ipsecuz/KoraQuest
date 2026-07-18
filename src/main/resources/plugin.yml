@@ -1,0 +1,83 @@
+name: KoraQuest
+version: '1.1'
+main: dev.ipseucz.koraquest.KoraQuestPlugin
+api-version: '1.21'
+author: Ipsecuz_
+description: Professional multi-cycle quest system for Paper or Folia with native Bedrock forms
+folia-supported: true
+softdepend:
+  - PlaceholderAPI
+  - Vault
+  - PlayerPoints
+  - CoinsEngine
+  - floodgate
+  - Citizens
+  - WorldGuard
+  - MythicMobs
+  - SuperiorSkyblock2
+  - BentoBox
+  - PlotSquared
+  - Jobs
+  - mcMMO
+  - ItemsAdder
+  - Oraxen
+  - Nexo
+  - MMOItems
+  - ExecutableItems
+  - ExcellentCrates
+  - VotingPlugin
+  - Votifier
+libraries:
+  - org.xerial:sqlite-jdbc:3.53.2.0
+  - com.zaxxer:HikariCP:6.3.0
+  - com.mysql:mysql-connector-j:9.4.0
+  - org.mariadb.jdbc:mariadb-java-client:3.5.6
+commands:
+  quest:
+    description: Open and manage KoraQuest
+    usage: /quest help
+    aliases: [quests, koraquest]
+permissions:
+  koraquest.use:
+    default: true
+    children:
+      koraquest.command.open: true
+      koraquest.command.accept: true
+      koraquest.command.cancel: true
+      koraquest.command.claim: true
+      koraquest.command.reroll: true
+      koraquest.command.submit: true
+  koraquest.command.open: {default: true}
+  koraquest.command.accept: {default: true}
+  koraquest.command.cancel: {default: true}
+  koraquest.command.claim: {default: true}
+  koraquest.command.reroll: {default: true}
+  koraquest.command.submit: {default: true}
+  koraquest.admin:
+    default: op
+    children:
+      koraquest.admin.reload: true
+      koraquest.admin.reset: true
+      koraquest.admin.editor: true
+      koraquest.admin.progress: true
+      koraquest.admin.rewardretry: true
+      koraquest.admin.update: true
+  koraquest.admin.reload: {default: op}
+  koraquest.admin.reset: {default: op}
+  koraquest.admin.editor: {default: op}
+  koraquest.admin.progress: {default: op}
+  koraquest.admin.rewardretry: {default: op}
+  koraquest.admin.update: {default: op}
+  koraquest.update-notify: {default: op}
+  koraquest.bypass.world: {default: op}
+  koraquest.bypass.antiexploit: {default: op}
+  koraquest.limit.3: {default: false}
+  koraquest.limit.5: {default: false}
+  koraquest.limit.10: {default: false}
+  koraquest.limit.15: {default: false}
+  koraquest.limit.daily.15: {default: false}
+  koraquest.limit.weekly.10: {default: false}
+  koraquest.limit.monthly.10: {default: false}
+  koraquest.limit.seasonal.10: {default: false}
+  koraquest.reroll.2: {default: false}
+  koraquest.booster.25: {default: false}

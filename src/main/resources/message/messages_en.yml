@@ -1,0 +1,337 @@
+prefix: '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8» &f'
+messages:
+  no-permission: '%prefix%&#FF6B6BYou do not have permission to do this.'
+  player-only: '%prefix%&#FF6B6BThis command can only be used in game.'
+  player-not-found: '%prefix%&#FF6B6BThe player is not online.'
+  unknown-command: '%prefix%&#FF6B6BUnknown command. Use &e/quest help&#FF6B6B.'
+  loading: '%prefix%&#FFD36ADữ liệu đang được tải, hãy thử lại sau một chút.'
+  data-load-failed: '%prefix%&#FF6B6BCould not load quest data. Please try again and check the database if this continues.'
+  reloaded: '%prefix%&#75FF75Configuration, language, cycles and quests reloaded.'
+  reload-failed: '%prefix%&#FF6B6BReload thất bại. Hãy xem console để biết chi tiết.'
+  forced-reset: '%prefix%&#75FF75Đã reset chu kỳ %cycle%&#75FF75.'
+  cycle-reset: '&#FFB84D&lKoraQuest &8» &#FFD36AChu kỳ %cycle% &#FFD36Ađã được làm mới với &f%amount% &#FFD36Anhiệm vụ.'
+  cycle-not-found: '%prefix%&#FF6B6BKhông tìm thấy cycle &f%cycle%&#FF6B6B.'
+  cycle-reset-processing: '%prefix%&#FFD36ACycle &f%cycle% &#FFD36Ađang được reset.'
+  cycle-reset-failed: '%prefix%&#FF6B6BUnable to persist cycle &f%cycle%&#FF6B6B. Check the database and console.'
+  cycle-reset-locked: '%prefix%&#FFD36AMột backend khác đang xử lý reset cycle &f%cycle%&#FFD36A.'
+  quest-not-found: '%prefix%&#FF6B6BQuest &f%quest_id% &#FF6B6Bwas not found.'
+  quest-not-in-cycle: '%prefix%&#FF6B6BNhiệm vụ này không khả dụng trong cycle &f%cycle%&#FF6B6B.'
+  quest-already-active: '%prefix%&#FFD36ABạn đang làm nhiệm vụ này.'
+  quest-already-completed: '%prefix%&#FF6B6BBạn đã hoàn thành nhiệm vụ này trong cycle hiện tại.'
+  quest-active-limit: '%prefix%&#FF6B6BBạn chỉ có thể nhận tối đa &f%limit% &#FF6B6Bnhiệm vụ trong cycle này.'
+  quest-accepted: '%prefix%&#75FF75Accepted quest &#FFFFFF%quest_name%&#75FF75.'
+  quest-cancelled: '%prefix%&#FFD36ACancelled quest &#FFFFFF%quest_name%&#FFD36A.'
+  quest-not-active: '%prefix%&#FF6B6BBạn chưa nhận nhiệm vụ này.'
+  quest-not-ready: '%prefix%&#FFD36ANhiệm vụ chưa hoàn tất: &f%progress%&7/&f%required%&#FFD36A.'
+  quest-cooldown: '%prefix%&#FFD36ABạn có thể nhận lại nhiệm vụ sau &f%time%&#FFD36A.'
+  quest-progress: '%prefix%&#7DE2FF%quest_name% &8» &f%progress%&7/&f%required% &8(&f%percent%%%&8)'
+  quest-ready: '%prefix%&#75FF75Quest &#FFFFFF%quest_name% &#75FF75is ready to claim.'
+  quest-completed: '%prefix%&#75FF75Completed &#FFFFFF%quest_name%&#75FF75! Rewards were delivered safely.'
+  quest-action-usage: '%prefix%&#FFD36ADùng: &e/quest %action% <quest-id>'
+  requirement-failed: '%prefix%&#FF6B6BBạn chưa đạt yêu cầu: &f%requirement%'
+  reward-processing: '%prefix%&#7DE2FFSafely processing your reward...'
+  reward-command-failed: '%prefix%&#FF6B6BPhần thưởng đang tạm chờ do một lệnh bị lỗi. Hệ thống sẽ tự thử lại.'
+  reward-retry-started: '%prefix%&#75FF75Đã đưa &f%amount% &#75FF75reward claim vào hàng đợi thử lại.'
+  reward-retry-failed: '%prefix%&#FF6B6BKhông thể đọc hàng đợi phần thưởng. Xem console để biết chi tiết.'
+  reroll-disabled: '%prefix%&#FF6B6BReroll is disabled.'
+  reroll-blocked: '%prefix%&#FF6B6BNhiệm vụ này không cho phép reroll.'
+  reroll-active-denied: '%prefix%&#FFD36AHãy hủy nhiệm vụ đang nhận trước khi reroll.'
+  reroll-no-candidate: '%prefix%&#FF6B6BKhông còn nhiệm vụ phù hợp để reroll.'
+  reroll-no-funds: '%prefix%&#FF6B6BYou cannot afford this reroll.'
+  reroll-payment-failed: '%prefix%&#FF6B6BKhông thể trừ phí reroll. Không có thay đổi nào được lưu.'
+  reroll-success: '%prefix%&#75FF75Đã đổi &#FFFFFF%old_quest% &#75FF75thành &#FFFFFF%new_quest%&#75FF75. Lượt miễn phí còn lại: &f%remaining%&#75FF75.'
+  streak-updated: '%prefix%&#FFB84DStreak ngày: &f%streak% &8• &#FFD36AKỷ lục: &f%best%'
+  season-level-up: '%prefix%&#DFA7FFSeason Level tăng lên &f%level% &#DFA7FFvới &f%xp% XP&#DFA7FF.'
+  submit-invalid-quest: '%prefix%&#FF6B6BNhiệm vụ này không phải objective ITEM_SUBMIT.'
+  submit-no-items: '%prefix%&#FFD36ABạn không có vật phẩm phù hợp để nộp.'
+  submit-success: '%prefix%&#75FF75Đã nộp &f%amount% %item%&#75FF75.'
+  submit-usage: '%prefix%&#FFD36ADùng: &e/quest submit <quest-id> [amount]'
+  search-usage: '%prefix%&#FFD36ADùng: &e/quest search [cycle] <từ khóa>'
+  search-instruction: '%prefix%&#7DE2FFDùng &f/quest search %cycle% <từ khóa> &#7DE2FFđể tìm quest theo tên, ID hoặc objective.'
+  active-empty: '%prefix%&#FFD36ABạn chưa nhận nhiệm vụ nào.'
+  active-header: '&#FFB84D&lKoraQuest &8— &#FFFFFFNhiệm vụ đang nhận'
+  active-line: '&#8A8A8A• &#FFFFFF%quest_name% &8[&f%cycle_name%&8] &7%progress%/%required%'
+  version-line: '%prefix%&7Version: &f%current% &8• &7Platform: &f%platform% &8• &7Storage: &f%storage%'
+  update-disabled: '%prefix%&#FFD36AThe update checker is disabled.'
+  update-not-configured: '%prefix%&#FFD36ASet the SpigotMC resource ID at &fupdate-checker.resource-id&#FFD36A.'
+  update-checking: '%prefix%&#7DE2FFChecking SpigotMC for updates...'
+  update-current: '%prefix%&#75FF75You are using the latest version: &f%current%&#75FF75.'
+  update-available-console: '%prefix%&#FFD36AKoraQuest &f%latest% &#FFD36Ais available (installed: &f%current%&#FFD36A). %download_url%'
+  update-check-failed: '%prefix%&#FF6B6BUnable to check for updates: &f%error%'
+  update-border: '&#FFB84D&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  update-card:
+    - '&#FFB84D&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+    - '&#FFB84D&lKoraQuest &8— &fUpdate available'
+    - '&7Installed version: &f%current%'
+    - '&7Latest version: &#75FF75%latest%'
+    - '&7Update to receive the latest fixes, optimizations and features.'
+  update-button: '&#7DE2FF&l[ OPEN DOWNLOAD PAGE ]'
+  update-hover: '&fOpen KoraQuest on SpigotMC'
+  admin-create-usage: '%prefix%&#FFD36ADùng: &e/quest admin create <id> <cycle> <easy|medium|hard> <type> <target> <required> [material]'
+  admin-created: '%prefix%&#75FF75Đã tạo quest &f%quest_id%&#75FF75.'
+  admin-create-failed: '%prefix%&#FF6B6BKhông thể tạo quest &f%quest_id%&#FF6B6B: %result%.'
+  admin-delete-usage: '%prefix%&#FFD36ADùng: &e/quest admin delete <id>'
+  admin-deleted: '%prefix%&#75FF75Đã xóa quest &f%quest_id%&#75FF75.'
+  admin-progress-usage: '%prefix%&#FFD36ADùng: &e/quest admin progress <player> <quest-id> <amount>'
+  admin-progressed: '%prefix%&#75FF75Đã cộng &f%amount% &#75FF75tiến độ quest &f%quest_id% &#75FF75cho &f%player%&#75FF75.'
+  admin-progress-failed: '%prefix%&#FF6B6BKhông thể cộng tiến độ; player có thể chưa nhận quest.'
+  invalid-material: '%prefix%&#FF6B6BMaterial không hợp lệ.'
+  invalid-number: '%prefix%&#FF6B6BSố nhập vào không hợp lệ.'
+  invalid-type: '%prefix%&#FF6B6BObjective, difficulty hoặc dữ liệu nhập vào không hợp lệ.'
+  validation-ok: '%prefix%&#75FF75Không phát hiện lỗi cấu hình quest.'
+  validation-header: '%prefix%&#FFD36AĐã phát hiện &f%count% &#FFD36Alỗi cấu hình:'
+  editor-prompt: '%prefix%&#7DE2FFNhập giá trị mới cho &f%field%&#7DE2FF trong chat. Gõ &fcancel &#7DE2FFđể hủy.'
+  editor-cancelled: '%prefix%&#FFD36AĐã hủy thao tác editor.'
+  editor-updated: '%prefix%&#75FF75Đã cập nhật quest &f%quest_id%&#75FF75.'
+  editor-update-failed: '%prefix%&#FF6B6BKhông thể cập nhật quest &f%quest_id%&#FF6B6B. Giá trị có thể không hợp lệ.'
+  editor-invalid-value: '%prefix%&#FF6B6BGiá trị &f%value% &#FF6B6Bkhông hợp lệ.'
+  editor-delete-cancelled: '%prefix%&#FFD36AKhông xóa quest vì chuỗi xác nhận không đúng.'
+  editor-valid: '%prefix%&#75FF75Quest &f%quest_id% &#75FF75hợp lệ.'
+  editor-invalid: '%prefix%&#FF6B6BQuest &f%quest_id% &#FF6B6Bcó &f%errors% &#FF6B6Blỗi.'
+  editor-test-reward: '%prefix%&#FFD36AĐang chạy reward test cho &f%quest_id%&#FFD36A. Reward test vẫn dùng durable claim.'
+  types-header: '&#FFB84D&lObjective Types'
+  types-line: '&8• &#7DE2FF%type% &8— &7%hint%'
+  help:
+    - '&#FFB84D&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+    - '&#FFB84D&lKoraQuest &8— &fPlayer commands'
+    - '&e/quest [cycle] &8— &7Open the quest interface'
+    - '&e/quest active [cycle] &8— &7View accepted quests'
+    - '&e/quest search [cycle] <text> &8— &7Search for quests'
+    - '&e/quest accept <id> &8— &7Accept a quest'
+    - '&e/quest cancel <id> &8— &7Cancel an active quest'
+    - '&e/quest claim <id> &8— &7Claim a completed quest reward'
+    - '&e/quest reroll <id> &8— &7Replace a quest with another one'
+    - '&e/quest submit <id> [amount] &8— &7Submit quest items'
+    - '&e/quest version &8— &7View version and platform information'
+    - '&#FFB84D&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  help-admin:
+    - '&#FFB84D&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+    - '&#FFB84D&lKoraQuest &8— &fAll commands'
+    - '&e/quest [cycle] &8— &7Open the quest interface'
+    - '&e/quest active [cycle] &8— &7View accepted quests'
+    - '&e/quest search [cycle] <text> &8— &7Search for quests'
+    - '&e/quest accept <id> &8— &7Accept a quest'
+    - '&e/quest cancel <id> &8— &7Cancel an active quest'
+    - '&e/quest claim <id> &8— &7Claim a completed quest reward'
+    - '&e/quest reroll <id> &8— &7Replace a quest with another one'
+    - '&e/quest submit <id> [amount] &8— &7Submit quest items'
+    - '&e/quest version &8— &7View version and platform information'
+    - '&e/quest editor [id] &8— &7Open the in-game quest editor'
+    - '&e/quest update &8— &7Check for a new plugin version'
+    - '&e/quest admin reload &8— &7Reload configuration and language files'
+    - '&e/quest admin reset <cycle> &8— &7Rotate the selected cycle'
+    - '&e/quest admin editor [id] &8— &7Open the editor or edit a quest'
+    - '&e/quest admin create <...> &8— &7Create a quest'
+    - '&e/quest admin delete <id> &8— &7Delete a quest from configuration'
+    - '&e/quest admin progress <player> <id> <amount> &8— &7Add progress manually'
+    - '&e/quest admin retryrewards &8— &7Retry pending reward claims'
+    - '&e/quest admin validate &8— &7Validate quest configuration'
+    - '&e/quest admin types &8— &7List supported objective types'
+    - '&e/quest admin update &8— &7Check SpigotMC for updates'
+    - '&#FFB84D&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+  admin-help:
+    - '&#FFB84D&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+    - '&#FFB84D&lKoraQuest Admin &8— &fAdministration commands'
+    - '&e/quest admin reload &8— &7Reload configuration and language files'
+    - '&e/quest admin reset <cycle> &8— &7Rotate the selected cycle'
+    - '&e/quest admin editor [id] &8— &7Open the editor or edit a quest'
+    - '&e/quest admin create <id> <cycle> <difficulty> <type> <target> <amount> [material] &8— &7Create a quest'
+    - '&e/quest admin delete <id> &8— &7Delete a quest from configuration'
+    - '&e/quest admin progress <player> <id> <amount> &8— &7Add progress manually'
+    - '&e/quest admin retryrewards &8— &7Retry pending reward claims'
+    - '&e/quest admin validate &8— &7Validate quest configuration'
+    - '&e/quest admin types &8— &7List supported objective types'
+    - '&e/quest admin update &8— &7Check SpigotMC for updates'
+    - '&#FFB84D&m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
+
+gui:
+  title: '&#151515KoraQuest &8• %cycle_name% &8• Trang %page%/%max_page%'
+  filler-name: ' '
+  cycle-selected: '&#75FF75Đang chọn'
+  time:
+    manual: 'Đến khi quản trị reset'
+    loading: 'Đang đồng bộ'
+    refreshing: 'Sắp làm mới'
+    unknown: 'Không xác định'
+  difficulty:
+    easy:
+      name: '&#75FF75Dễ'
+    medium:
+      name: '&#FFD36ATrung bình'
+    hard:
+      name: '&#FF6B6BKhó'
+    unknown:
+      name: '&7Không xác định'
+  search-none: 'Không có'
+  cycle:
+    name: '%cycle_name%'
+    lore:
+      - '&7Nhấn để chuyển cycle'
+      - '&7Thời gian còn lại: &f%cycle_reset_time%'
+      - '%cycle_selected%'
+  filter:
+    name: '&#7DE2FFBộ lọc: &f%filter%'
+    lore: ['&7Nhấn để đổi trạng thái hiển thị']
+  sort:
+    name: '&#DFA7FFSắp xếp: &f%sort%'
+    lore: ['&7Nhấn để đổi kiểu sắp xếp']
+  search:
+    name: '&#FFD36ATìm kiếm'
+    lore: ['&7Từ khóa: &f%search%', '', '&e/quest search %cycle% <từ khóa>']
+  claim-all:
+    name: '&#75FF75Nhận tất cả'
+    lore: ['&7Nhận mọi quest đã READY trong cycle này']
+  info:
+    name: '&#FFB84DThông tin cycle'
+    lore:
+      - '&7Tổng: &f%total%'
+      - '&7Hoàn thành: &f%completed%'
+      - '&7Còn lại: &f%remaining%'
+      - '&7Đang nhận: &f%active_count%'
+      - '&7Làm mới sau: &f%cycle_reset_time%'
+      - '&7Daily streak: &f%streak%'
+      - '&7Season level: &f%season_level%'
+  previous-page: {name: '&#7DE2FFTrang trước', lore: ['&7Trang %page%/%max_page%']}
+  next-page: {name: '&#7DE2FFTrang sau', lore: ['&7Trang %page%/%max_page%']}
+  status:
+    available: '&#75FF75Khả dụng'
+    active: '&#7DE2FFĐang làm'
+    ready: '&#FFD36ASẵn sàng nhận'
+    completed: '&#8A8A8AĐã hoàn thành'
+  filters:
+    all: Tất cả
+    available: Khả dụng
+    active: Đang làm
+    ready: Sẵn sàng
+    completed: Hoàn thành
+  sorts:
+    difficulty: Độ khó
+    progress: Tiến độ
+    name: Tên
+  quest:
+    details:
+      - ''
+      - '&7Loại nhiệm vụ: &f%cycle_name%'
+      - '&7Độ khó: %difficulty_name%'
+      - '&7Thời gian còn lại: &f%quest_reset_time%'
+      - '&7Tiến độ: &f%progress%&7/&f%required% &8(&f%percent%%%&8)'
+      - '%progress_bar%'
+      - '&7Trạng thái: %status%'
+    actions:
+      available: ['', '&#75FF75Chuột trái: Nhận quest', '&#DFA7FFChuột giữa/Q: Reroll']
+      active: ['', '&#FFD36AChuột phải: Hủy có xác nhận', '&#DFA7FFChuột giữa/Q: Reroll', '&eShift + trái: Nộp item (ITEM_SUBMIT)']
+      ready: ['', '&#75FF75Chuột trái: Nhận thưởng']
+      completed: ['', '&#8A8A8AĐã hoàn thành trong cycle này']
+  confirm:
+    title: '&#151515Xác nhận hủy nhiệm vụ'
+    yes: {name: '&#75FF75Xác nhận hủy', lore: ['&7Hủy quest &f%quest_name%']}
+    no: {name: '&#FF6B6BQuay lại', lore: ['&7Không thay đổi tiến độ']}
+
+bedrock:
+  cycles:
+    title: KoraQuest - Chọn cycle
+    content: Chọn nhóm nhiệm vụ bạn muốn xem.
+  list:
+    content: 'Trang %page%/%max_page% | Reset: %reset_time%'
+  buttons:
+    previous: Trang trước
+    next: Trang sau
+    filter: 'Đổi bộ lọc: %filter%'
+    claim-all: Nhận tất cả
+    cycles: Chọn cycle khác
+    accept: Nhận nhiệm vụ
+    claim: Nhận phần thưởng
+    cancel: Hủy nhiệm vụ
+    reroll: Reroll nhiệm vụ
+    completed: Đã hoàn thành
+    back: Quay lại
+
+editor:
+  list-title: '&#151515KoraQuest Editor &8• Danh sách quest'
+  edit-title: '&#151515Editor &8• %quest_id%'
+  field-name: '&#7DE2FF%field%'
+  field-lore: ['&7Giá trị hiện tại:', '&f%value%', '', '&#75FF75Nhấn để chỉnh sửa']
+  fields:
+    create: Tạo quest
+    cycle: Cycle
+    material: Icon/Material
+    title: Tiêu đề
+    lore: Mô tả
+    type: Objective type
+    target: Target
+    required: Số lượng yêu cầu
+    filters: Filters
+    requirements: Requirements
+    rewards: Reward commands
+    permission: Permission
+    cooldown: Cooldown
+    effects: Sound | Particle
+    season_xp: Season XP
+    difficulty: Độ khó
+    rerollable: Cho phép reroll
+    clone: Clone quest
+    preview: Preview
+    validate: Validate
+    test_reward: Test reward
+    delete: Xóa quest
+    back: Quay lại
+  previous: {name: '&#7DE2FFTrang trước', lore: ['&7Chuyển về trang trước']}
+  next: {name: '&#7DE2FFTrang sau', lore: ['&7Chuyển sang trang sau']}
+  create: {name: '&#75FF75Tạo quest mới', lore: ['&7Nhập ID mới trong chat']}
+  validate-all: {name: '&#FFD36AValidate tất cả', lore: ['&7Lỗi hiện tại: &f%errors%']}
+
+objective-target-hints:
+  KILL: EntityType, Citizens/Mythic ID hoặc ANY
+  BREAK: Material hoặc ANY
+  PLACE: Material hoặc ANY
+  CRAFT: Material/custom item ID hoặc ANY
+  FISH: Material/EntityType hoặc ANY
+  ENCHANT: Material/custom item ID hoặc ANY
+  BREED: EntityType hoặc ANY
+  TAME: EntityType hoặc ANY
+  CONSUME: Material/custom item ID hoặc ANY
+  SMELT: Material hoặc ANY
+  SHEAR: EntityType hoặc ANY
+  PLAYTIME: ANY
+  WALK: ANY
+  SPRINT: ANY
+  SWIM: ANY
+  FLY: ANY
+  GLIDE: ANY
+  JUMP: ANY
+  CHAT: ANY
+  COMMAND: Tên command hoặc ANY
+  LOGIN: ANY
+  VOTE: ANY
+  ITEM_PICKUP: Material/custom item ID hoặc ANY
+  ITEM_DROP: Material/custom item ID hoặc ANY
+  ITEM_SUBMIT: Material/custom item ID hoặc ANY
+  INTERACT_BLOCK: Material hoặc ANY
+  INTERACT_ENTITY: Entity/Citizens ID hoặc ANY
+  DAMAGE_DEALT: EntityType hoặc ANY
+  DAMAGE_TAKEN: EntityType/cause hoặc ANY
+  HEAL: RegainReason hoặc ANY
+  DIE: ANY
+  VISIT_LOCATION: world:x:y:z:radius
+  ENTER_WORLD: Tên world hoặc ANY
+  ENTER_REGION: WorldGuard region hoặc ANY
+  EXP_GAIN: ANY
+  LEVEL_GAIN: ANY
+  MONEY_EARN: VAULT, PLAYERPOINTS hoặc ANY
+  MONEY_SPEND: VAULT, PLAYERPOINTS hoặc ANY
+  POTION_BREW: Material hoặc ANY
+  BUCKET_FILL: Material hoặc ANY
+  TRADE_VILLAGER: Material/custom item ID hoặc ANY
+  REPAIR: Material/custom item ID hoặc ANY
+  ANVIL: Material/custom item ID hoặc ANY
+  SMITHING: Material/custom item ID hoặc ANY
+  STONECUT: Material/custom item ID hoặc ANY
+  LOOT_CHEST: Container type hoặc ANY
+  CUSTOM: Chuỗi do API provider gửi
+
+validation-errors:
+  missing-quests-section: '&cquests.yml đang thiếu mục quests.'
+  missing-cycles-section: '&cconfig.yml đang thiếu mục cycles.'
+  invalid-cycle: '&cCycle %cycle% không hợp lệ.'
+  invalid-quest-id: '&cQuest %quest_id% có ID không hợp lệ.'
+  invalid-quest: '&cQuest %quest_id% có dữ liệu không hợp lệ. Xem console.'

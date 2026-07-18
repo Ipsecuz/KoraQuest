@@ -1,0 +1,1074 @@
+# KoraQuest 1.1 - Quest Definitions
+# Author: Ipsecuz_
+#
+# Mỗi quest thuộc một cycle độc lập: daily, weekly, monthly, seasonal hoặc cycle custom
+# được khai báo trong config.yml. Progress, reroll, giới hạn nhận và lịch reset tách riêng.
+#
+# Objective được KoraQuest theo dõi trực tiếp:
+# KILL, BREAK, PLACE, CRAFT, FISH, ENCHANT, BREED, TAME, CONSUME, SMELT, SHEAR,
+# PLAYTIME, WALK, SPRINT, SWIM, FLY, GLIDE, JUMP, CHAT, COMMAND, LOGIN,
+# ITEM_PICKUP, ITEM_DROP, ITEM_SUBMIT, INTERACT_BLOCK, INTERACT_ENTITY,
+# DAMAGE_DEALT, DAMAGE_TAKEN, HEAL, DIE, VISIT_LOCATION, ENTER_WORLD, ENTER_REGION,
+# EXP_GAIN, LEVEL_GAIN, MONEY_EARN, MONEY_SPEND, POTION_BREW, BUCKET_FILL,
+# TRADE_VILLAGER, REPAIR, ANVIL, SMITHING, STONECUT, LOOT_CHEST và CUSTOM.
+#
+# VOTE tự hook VotingPlugin/NuVotifier khi có plugin tương thích.
+# MONEY_EARN/MONEY_SPEND theo dõi Vault và PlayerPoints bằng snapshot định kỳ.
+# CUSTOM có thể nhận tiến độ từ API, admin command, mcMMO và Jobs Reborn.
+#
+# Optional fields:
+#   cycle: daily
+#   permission: koraquest.quest.example
+#   cooldown-seconds: 0
+#   rerollable: true
+#   season-xp: 0
+#   requirements:
+#     - '%vault_eco_balance% >= 10000'
+#   filters:
+#     worlds: [survival]
+#     min-y: -64
+#     max-y: 320
+#     weapon: DIAMOND_SWORD
+#     spawn-reasons: [NATURAL]
+#     require-critical-hit: false
+#     regions: [mine]
+#     require-own-island: false
+#     require-own-plot: false
+#   location:
+#     world: world
+#     x: 0
+#     y: 64
+#     z: 0
+#     radius: 5
+#   completion:
+#     sound: ENTITY_PLAYER_LEVELUP
+#     particle: TOTEM_OF_UNDYING
+#
+# rewards là danh sách console command và được đóng băng vào durable reward claim.
+# Placeholder tích hợp sẵn: %player%, %uuid%, %quest_id%, %quest_name%, %cycle%,
+# %difficulty%, %progress%, %required% và PlaceholderAPI khi được cài.
+# Random range: {random:min-max}
+# Ví dụ: 'eco give %player% {random:100000-200000}'
+
+bundled-packs:
+  301:
+    quests:
+      - easy_carrot_harvest
+      - easy_iron_smelter
+      - easy_cow_breeder
+      - easy_cobble_collector
+      - medium_sprint_runner
+      - medium_villager_trade
+      - medium_potion_brewer
+      - medium_zombie_damage
+      - hard_elytra_journey
+      - hard_netherite_smith
+      - hard_anvil_master
+      - hard_experience_surge
+      - weekly_stone_architect
+      - weekly_cattle_ranch
+      - weekly_supporter_vote
+      - weekly_emerald_merchant
+      - weekly_sky_distance
+      - weekly_combat_power
+      - weekly_iron_delivery
+      - weekly_treasure_hunter
+      - monthly_playtime_legend
+      - monthly_stone_empire
+      - monthly_mob_conqueror
+      - monthly_vote_champion
+      - monthly_wealth_builder
+      - monthly_elytra_marathon
+      - seasonal_melon_festival
+      - seasonal_guardian_hunt
+      - seasonal_sunflower_delivery
+      - seasonal_activity_marathon
+
+quests:
+  easy_zombie_cleaner:
+    cycle: daily
+    difficulty: easy
+    type: KILL
+    target: ZOMBIE
+    required: 15
+    material: ROTTEN_FLESH
+    title: '&#75FF75ᴅᴏɴ ᴅẹᴘ ᴢᴏᴍʙɪᴇ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f15 Zombie &#8A8A8Atừ mob farm.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_skeleton_guard:
+    cycle: daily
+    difficulty: easy
+    type: KILL
+    target: SKELETON
+    required: 12
+    material: BONE
+    title: '&#75FF75ɴɢườɪ ɢáᴄ xươɴɢ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f12 Skeleton &#8A8A8Atừ mob farm.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_stone_miner:
+    cycle: daily
+    difficulty: easy
+    type: BREAK
+    target: STONE
+    required: 128
+    material: STONE
+    title: '&#75FF75ᴛʜợ ᴍỏ ᴛậᴘ ꜱự'
+    lore:
+      - '&#8A8A8AĐào &f128 Stone &#8A8A8Atừ đảo hoặc generator.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_cobble_worker:
+    cycle: daily
+    difficulty: easy
+    type: BREAK
+    target: COBBLESTONE
+    required: 192
+    material: COBBLESTONE
+    title: '&#75FF75ᴋʜᴀɪ ᴛʜáᴄ ᴄᴏʙʙʟᴇ'
+    lore:
+      - '&#8A8A8AĐào &f192 Cobblestone &#8A8A8Atừ generator.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_oak_logger:
+    cycle: daily
+    difficulty: easy
+    type: BREAK
+    target: OAK_LOG
+    required: 64
+    material: OAK_LOG
+    title: '&#75FF75ᴛɪềᴜ ᴘʜᴜ ʀừɴɢ ꜱồɪ'
+    lore:
+      - '&#8A8A8AChặt &f64 Oak Log &#8A8A8Atrên đảo.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_coal_runner:
+    cycle: daily
+    difficulty: easy
+    type: BREAK
+    target: COAL_ORE
+    required: 24
+    material: COAL
+    title: '&#75FF75ᴛìᴍ ᴋɪếᴍ ᴛʜᴀɴ'
+    lore:
+      - '&#8A8A8AĐào &f24 Coal Ore &#8A8A8Atừ ore generator.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_fisher:
+    cycle: daily
+    difficulty: easy
+    type: FISH
+    target: ANY
+    required: 8
+    material: FISHING_ROD
+    title: '&#75FF75ᴄầɴ ᴛʜủ ɴʜỏ'
+    lore:
+      - '&#8A8A8ACâu thành công &f8 lần &#8A8A8Atại đảo.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_torch_builder:
+    cycle: daily
+    difficulty: easy
+    type: PLACE
+    target: TORCH
+    required: 24
+    material: TORCH
+    title: '&#75FF75ᴛʜắᴘ ꜱáɴɢ ʟốɪ đɪ'
+    lore:
+      - '&#8A8A8AĐặt &f24 Torch &#8A8A8Atrên đảo.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_bread_baker:
+    cycle: daily
+    difficulty: easy
+    type: CRAFT
+    target: BREAD
+    required: 16
+    material: BREAD
+    title: '&#75FF75ʟò ʙáɴʜ ᴍớɪ'
+    lore:
+      - '&#8A8A8ACraft &f16 Bread &#8A8A8Atừ farm lúa.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  easy_farmer:
+    cycle: daily
+    difficulty: easy
+    type: BREAK
+    target: WHEAT
+    required: 64
+    material: WHEAT
+    title: '&#75FF75ᴍùᴀ ᴠụ đầᴜ ᴛɪêɴ'
+    lore:
+      - '&#8A8A8AThu hoạch &f64 Wheat &#8A8A8Atrên đảo.'
+      - '&#75FF75Thưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+  medium_zombie_hunter:
+    cycle: daily
+    difficulty: medium
+    type: KILL
+    target: ZOMBIE
+    required: 60
+    material: IRON_SWORD
+    title: '&#FFD36Aᴛʜợ ꜱăɴ ᴢᴏᴍʙɪᴇ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f60 Zombie &#8A8A8Abằng mob farm.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_creeper_control:
+    cycle: daily
+    difficulty: medium
+    type: KILL
+    target: CREEPER
+    required: 35
+    material: GUNPOWDER
+    title: '&#FFD36Aᴋɪểᴍ ꜱᴏáᴛ ᴄʀᴇᴇᴘᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f35 Creeper &#8A8A8Atừ mob farm.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_iron_miner:
+    cycle: daily
+    difficulty: medium
+    type: BREAK
+    target: IRON_ORE
+    required: 64
+    material: IRON_INGOT
+    title: '&#FFD36Aᴍỏ ꜱắᴛ ɴóɴɢ'
+    lore:
+      - '&#8A8A8AĐào &f64 Iron Ore &#8A8A8Atừ ore generator.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_diamond_spark:
+    cycle: daily
+    difficulty: medium
+    type: BREAK
+    target: DIAMOND_ORE
+    required: 20
+    material: DIAMOND
+    title: '&#FFD36Aáɴʜ ᴋɪᴍ ᴄươɴɢ'
+    lore:
+      - '&#8A8A8AĐào &f20 Diamond Ore &#8A8A8Atừ ore generator.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_deepslate_grind:
+    cycle: daily
+    difficulty: medium
+    type: BREAK
+    target: DEEPSLATE
+    required: 256
+    material: DEEPSLATE
+    title: '&#FFD36Aɴɢʜɪềɴ ᴅᴇᴇᴘꜱʟᴀᴛᴇ'
+    lore:
+      - '&#8A8A8AĐào &f256 Deepslate &#8A8A8Atại khu mine/generator.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_enderman_watch:
+    cycle: daily
+    difficulty: medium
+    type: KILL
+    target: ENDERMAN
+    required: 25
+    material: ENDER_PEARL
+    title: '&#FFD36Aᴋẻ ɢáᴄ ᴇɴᴅᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f25 Enderman &#8A8A8Atừ farm.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_fishing_trip:
+    cycle: daily
+    difficulty: medium
+    type: FISH
+    target: ANY
+    required: 35
+    material: COD
+    title: '&#FFD36Aᴄʜᴜʏếɴ ᴄâᴜ ᴅàɪ'
+    lore:
+      - '&#8A8A8ACâu thành công &f35 lần &#8A8A8Atại đảo.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_lantern_path:
+    cycle: daily
+    difficulty: medium
+    type: PLACE
+    target: LANTERN
+    required: 48
+    material: LANTERN
+    title: '&#FFD36Aᴄᴏɴ đườɴɢ ʟồɴɢ đèɴ'
+    lore:
+      - '&#8A8A8AĐặt &f48 Lantern &#8A8A8Atrang trí đảo.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_golden_cook:
+    cycle: daily
+    difficulty: medium
+    type: CRAFT
+    target: GOLDEN_APPLE
+    required: 4
+    material: GOLDEN_APPLE
+    title: '&#FFD36Aʙữᴀ ăɴ ʜᴏàɴɢ ᴋɪᴍ'
+    lore:
+      - '&#8A8A8ACraft &f4 Golden Apple&#8A8A8A.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  medium_enchanter:
+    cycle: daily
+    difficulty: medium
+    type: ENCHANT
+    target: ANY
+    required: 5
+    material: ENCHANTING_TABLE
+    title: '&#FFD36Aᴘʜù ᴛʜủʏ ᴛậᴘ ꜱự'
+    lore:
+      - '&#8A8A8AEnchant vật phẩm &f5 lần&#8A8A8A.'
+      - '&#FFD36AThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+  hard_blaze_slayer:
+    cycle: daily
+    difficulty: hard
+    type: KILL
+    target: BLAZE
+    required: 90
+    material: BLAZE_ROD
+    title: '&#FF5C5Cᴛʜợ ꜱăɴ ʙʟᴀᴢᴇ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f90 Blaze &#8A8A8Atừ nether farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_wither_guard:
+    cycle: daily
+    difficulty: hard
+    type: KILL
+    target: WITHER_SKELETON
+    required: 55
+    material: WITHER_SKELETON_SKULL
+    title: '&#FF5C5Cᴠệ ʙɪɴʜ ᴡɪᴛʜᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f55 Wither Skeleton &#8A8A8Atừ farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_ancient_debris:
+    cycle: daily
+    difficulty: hard
+    type: BREAK
+    target: ANCIENT_DEBRIS
+    required: 8
+    material: ANCIENT_DEBRIS
+    title: '&#FF5C5Cᴅấᴜ ᴠếᴛ ᴄổ đạɪ'
+    lore:
+      - '&#8A8A8AĐào &f8 Ancient Debris &#8A8A8Anếu server có nether/ore gen.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_ender_trial:
+    cycle: daily
+    difficulty: hard
+    type: KILL
+    target: ENDERMAN
+    required: 120
+    material: ENDER_EYE
+    title: '&#FF5C5Cᴛʜử ᴛʜáᴄʜ ᴇɴᴅᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f120 Enderman &#8A8A8Atừ island/end farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_piglin_farm:
+    cycle: daily
+    difficulty: hard
+    type: KILL
+    target: PIGLIN
+    required: 70
+    material: GOLDEN_AXE
+    title: '&#FF5C5Cᴄʜɪếɴ ʙɪɴʜ ɴᴇᴛʜᴇʀ'
+    lore:
+      - '&#8A8A8ATiêu diệt &f70 Piglin &#8A8A8Atừ nether farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_diamond_rush:
+    cycle: daily
+    difficulty: hard
+    type: BREAK
+    target: DIAMOND_ORE
+    required: 32
+    material: DIAMOND_PICKAXE
+    title: '&#FF5C5Cᴄơɴ ꜱốᴛ ᴋɪᴍ ᴄươɴɢ'
+    lore:
+      - '&#8A8A8AĐào &f32 Diamond Ore &#8A8A8Atừ ore generator.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_netherite_forge:
+    cycle: daily
+    difficulty: hard
+    type: CRAFT
+    target: NETHERITE_INGOT
+    required: 2
+    material: NETHERITE_INGOT
+    title: '&#FF5C5Cʟò ʀèɴ ɴᴇᴛʜᴇʀɪᴛᴇ'
+    lore:
+      - '&#8A8A8ACraft &f2 Netherite Ingot&#8A8A8A.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_master_enchanter:
+    cycle: daily
+    difficulty: hard
+    type: ENCHANT
+    target: ANY
+    required: 8
+    material: EXPERIENCE_BOTTLE
+    title: '&#FF5C5Cʙậᴄ ᴛʜầʏ ᴘʜù ᴘʜéᴘ'
+    lore:
+      - '&#8A8A8AEnchant vật phẩm &f8 lần&#8A8A8A.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_deep_fishing:
+    cycle: daily
+    difficulty: hard
+    type: FISH
+    target: ANY
+    required: 60
+    material: TROPICAL_FISH
+    title: '&#FF5C5Cđạɪ ᴅươɴɢ ɢọɪ ᴛêɴ'
+    lore:
+      - '&#8A8A8ACâu thành công &f60 lần &#8A8A8Atại đảo.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+  hard_obsidian_breaker:
+    cycle: daily
+    difficulty: hard
+    type: BREAK
+    target: OBSIDIAN
+    required: 96
+    material: OBSIDIAN
+    title: '&#FF5C5Cᴘʜá ᴠỡ ʜắᴄ ᴛʜạᴄʜ'
+    lore:
+      - '&#8A8A8AĐào &f96 Obsidian &#8A8A8Atừ generator/farm.'
+      - '&#FF5C5CThưởng: money + mobcoin'
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+
+  weekly_playtime_guardian:
+    cycle: weekly
+    difficulty: medium
+    type: PLAYTIME
+    target: ANY
+    required: 600
+    material: CLOCK
+    title: '&#7DE2FFNgười bảo hộ tuần'
+    lore:
+      - '&7Online và hoạt động đủ &f600 phút&7.'
+      - '&7Tiến độ chỉ tăng khi server đang chạy.'
+    season-xp: 75
+    rewards:
+      - 'eco give %player% 1000000'
+      - 'mc give %player% 500'
+
+  weekly_mob_hunter:
+    cycle: weekly
+    difficulty: hard
+    type: KILL
+    target: ZOMBIE
+    required: 500
+    material: NETHERITE_SWORD
+    title: '&#7DE2FFThợ săn của tuần'
+    lore:
+      - '&7Tiêu diệt &f500 Zombie &7hợp lệ.'
+      - '&7Bộ lọc chống exploit vẫn được áp dụng.'
+    filters:
+      spawn-reasons: [NATURAL, SPAWNER]
+    season-xp: 100
+    rewards:
+      - 'eco give %player% 2500000'
+      - 'mc give %player% 750'
+
+  monthly_distance_master:
+    cycle: monthly
+    difficulty: hard
+    type: WALK
+    target: ANY
+    required: 100000
+    material: RECOVERY_COMPASS
+    title: '&#DFA7FFNhà thám hiểm tháng'
+    lore:
+      - '&7Di chuyển tổng cộng &f100.000 block &7bằng cách đi bộ.'
+    season-xp: 250
+    rewards:
+      - 'eco give %player% 10000000'
+      - 'mc give %player% 2000'
+
+  seasonal_summer_fisher:
+    cycle: seasonal
+    difficulty: medium
+    type: FISH
+    target: ANY
+    required: 250
+    material: HEART_OF_THE_SEA
+    title: '&#FFB84DLễ hội đại dương'
+    lore:
+      - '&7Câu thành công &f250 lần &7trong mùa hiện tại.'
+    rerollable: false
+    season-xp: 500
+    rewards:
+      - 'eco give %player% 5000000'
+      - 'mc give %player% 1500'
+
+  seasonal_spawn_visit:
+    cycle: seasonal
+    difficulty: easy
+    type: VISIT_LOCATION
+    target: ANY
+    required: 1
+    material: COMPASS
+    title: '&#FFB84DHành trình sự kiện'
+    lore:
+      - '&7Đến khu vực sự kiện được cấu hình.'
+    filters:
+      location: 'world:0:64:0'
+      radius: 8
+    rerollable: false
+    season-xp: 100
+    rewards:
+      - 'eco give %player% 500000'
+
+  # ---------------------------------------------------------------------------
+  # KoraQuest 1.1 - 30 nhiệm vụ mẫu bổ sung
+  # Daily: 12 | Weekly: 8 | Monthly: 6 | Seasonal: 4
+  # ---------------------------------------------------------------------------
+
+  easy_carrot_harvest:
+    cycle: daily
+    difficulty: easy
+    type: BREAK
+    target: CARROTS
+    required: 64
+    material: CARROT
+    title: '&#75FF75ᴠụ ᴍùᴀ ᴄà ʀốᴛ'
+    lore:
+      - '&7Thu hoạch &f64 bụi cà rốt &7hợp lệ.'
+      - '&7Block do người chơi đặt vẫn theo luật chống exploit.'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+
+  easy_iron_smelter:
+    cycle: daily
+    difficulty: easy
+    type: SMELT
+    target: IRON_INGOT
+    required: 32
+    material: FURNACE
+    title: '&#75FF75ʟò ɴᴜɴɢ ꜱắᴛ'
+    lore:
+      - '&7Nung thành công &f32 Iron Ingot&7.'
+      - '&7Chỉ sản phẩm được lấy hợp lệ mới tăng tiến độ.'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+
+  easy_cow_breeder:
+    cycle: daily
+    difficulty: easy
+    type: BREED
+    target: COW
+    required: 10
+    material: WHEAT
+    title: '&#75FF75ᴛʀạɪ ʙò ɴʜỏ'
+    lore:
+      - '&7Nhân giống thành công &f10 Cow&7.'
+      - '&7Mob phải được tạo từ thao tác của chính bạn.'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+
+  easy_cobble_collector:
+    cycle: daily
+    difficulty: easy
+    type: ITEM_PICKUP
+    target: COBBLESTONE
+    required: 128
+    material: MINECART
+    title: '&#75FF75ᴛʜᴜ ɢᴏᴍ ᴄᴏʙʙʟᴇ'
+    lore:
+      - '&7Nhặt &f128 Cobblestone &7từ mặt đất.'
+      - '&7Vật phẩm phải đi vào inventory của bạn.'
+    rewards:
+      - 'eco give %player% {random:100000-200000}'
+      - 'mc give %player% 50'
+
+  medium_sprint_runner:
+    cycle: daily
+    difficulty: medium
+    type: SPRINT
+    target: ANY
+    required: 2500
+    material: RABBIT_FOOT
+    title: '&#FFD36Ađườɴɢ ᴄʜạʏ ᴛốᴄ độ'
+    lore:
+      - '&7Chạy nước rút tổng cộng &f2.500 block&7.'
+      - '&7Dịch chuyển không được tính vào quãng đường.'
+    season-xp: 30
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+
+  medium_villager_trade:
+    cycle: daily
+    difficulty: medium
+    type: TRADE_VILLAGER
+    target: ANY
+    required: 16
+    material: EMERALD
+    title: '&#FFD36Aᴛʜươɴɢ ɴʜâɴ ʟàɴɢ'
+    lore:
+      - '&7Hoàn tất &f16 lượt giao dịch &7với Villager.'
+      - '&7Chỉ giao dịch thành công mới được ghi nhận.'
+    season-xp: 30
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+
+  medium_potion_brewer:
+    cycle: daily
+    difficulty: medium
+    type: POTION_BREW
+    target: POTION
+    required: 12
+    material: BREWING_STAND
+    title: '&#FFD36Aɴʜà ɢɪả ᴋɪᴍ'
+    lore:
+      - '&7Hoàn tất &f12 mẻ Potion &7trong Brewing Stand.'
+      - '&7Mỗi lần pha chế thành công được tính một tiến độ.'
+    season-xp: 30
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+
+  medium_zombie_damage:
+    cycle: daily
+    difficulty: medium
+    type: DAMAGE_DEALT
+    target: ZOMBIE
+    required: 1500
+    material: IRON_AXE
+    title: '&#FFD36Ađòɴ đáɴʜ ᴄʜíɴʜ xáᴄ'
+    lore:
+      - '&7Gây tổng cộng &f1.500 sát thương &7lên Zombie.'
+      - '&7Bộ lọc mob và world vẫn được áp dụng.'
+    filters:
+      spawn-reasons: [NATURAL, SPAWNER]
+    season-xp: 35
+    rewards:
+      - 'eco give %player% {random:500000-1000000}'
+      - 'mc give %player% 150'
+
+  hard_elytra_journey:
+    cycle: daily
+    difficulty: hard
+    type: GLIDE
+    target: ANY
+    required: 10000
+    material: ELYTRA
+    title: '&#FF5C5Cʜàɴʜ ᴛʀìɴʜ ᴇʟʏᴛʀᴀ'
+    lore:
+      - '&7Bay lượn bằng Elytra tổng cộng &f10.000 block&7.'
+      - '&7Khoảng dịch chuyển đột ngột không được cộng.'
+    season-xp: 60
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+
+  hard_netherite_smith:
+    cycle: daily
+    difficulty: hard
+    type: SMITHING
+    target: NETHERITE_SWORD
+    required: 1
+    material: SMITHING_TABLE
+    title: '&#FF5C5Cʟò ʀèɴ ᴄổ đạɪ'
+    lore:
+      - '&7Hoàn tất &f1 Netherite Sword &7trên Smithing Table.'
+      - '&7Vật phẩm phải được lấy khỏi ô kết quả.'
+    season-xp: 60
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+
+  hard_anvil_master:
+    cycle: daily
+    difficulty: hard
+    type: ANVIL
+    target: DIAMOND_PICKAXE
+    required: 3
+    material: ANVIL
+    title: '&#FF5C5Cʙậᴄ ᴛʜầʏ đᴇ'
+    lore:
+      - '&7Hoàn tất &f3 Diamond Pickaxe &7trên Anvil.'
+      - '&7Đổi tên, sửa hoặc ghép enchant đều được kiểm tra.'
+    season-xp: 60
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+
+  hard_experience_surge:
+    cycle: daily
+    difficulty: hard
+    type: EXP_GAIN
+    target: ANY
+    required: 1500
+    material: EXPERIENCE_BOTTLE
+    title: '&#FF5C5Cᴅòɴɢ ᴄʜảʏ ᴋɪɴʜ ɴɢʜɪệᴍ'
+    lore:
+      - '&7Nhận tổng cộng &f1.500 experience point&7.'
+      - '&7Tiến độ dùng lượng EXP thực tế nhận được.'
+    season-xp: 65
+    rewards:
+      - 'eco give %player% {random:2000000-5000000}'
+      - 'mc give %player% 300'
+
+  weekly_stone_architect:
+    cycle: weekly
+    difficulty: medium
+    type: BREAK
+    target: STONE
+    required: 2048
+    material: STONE_PICKAXE
+    title: '&#7DE2FFᴄôɴɢ ᴛʀìɴʜ đá ᴛᴜầɴ'
+    lore:
+      - '&7Khai thác &f2.048 Stone &7trong tuần hiện tại.'
+      - '&7Stone do người chơi đặt không được tính mặc định.'
+    season-xp: 90
+    rewards:
+      - 'eco give %player% 1500000'
+      - 'mc give %player% 500'
+
+  weekly_cattle_ranch:
+    cycle: weekly
+    difficulty: medium
+    type: BREED
+    target: COW
+    required: 100
+    material: LEATHER
+    title: '&#7DE2FFᴄʜủ ᴛʀạɪ ɢɪᴀ ꜱúᴄ'
+    lore:
+      - '&7Nhân giống thành công &f100 Cow &7trong một tuần.'
+    season-xp: 90
+    rewards:
+      - 'eco give %player% 1500000'
+      - 'mc give %player% 500'
+
+  weekly_supporter_vote:
+    cycle: weekly
+    difficulty: medium
+    type: VOTE
+    target: ANY
+    required: 5
+    material: PAPER
+    title: '&#7DE2FFɴɢườɪ ủɴɢ ʜộ ᴍáʏ ᴄʜủ'
+    lore:
+      - '&7Vote hợp lệ cho máy chủ &f5 lần&7.'
+      - '&7Yêu cầu VotingPlugin hoặc NuVotifier tương thích.'
+    season-xp: 100
+    rewards:
+      - 'eco give %player% 2000000'
+      - 'mc give %player% 600'
+
+  weekly_emerald_merchant:
+    cycle: weekly
+    difficulty: hard
+    type: TRADE_VILLAGER
+    target: ANY
+    required: 64
+    material: EMERALD_BLOCK
+    title: '&#7DE2FFᴛʜươɴɢ ɢɪᴀ ʟụᴄ ʙảᴏ'
+    lore:
+      - '&7Hoàn tất &f64 lượt giao dịch &7với Villager.'
+    season-xp: 130
+    rewards:
+      - 'eco give %player% 3500000'
+      - 'mc give %player% 800'
+
+  weekly_sky_distance:
+    cycle: weekly
+    difficulty: hard
+    type: FLY
+    target: ANY
+    required: 25000
+    material: FIREWORK_ROCKET
+    title: '&#7DE2FFđườɴɢ ʙᴀʏ ᴛʀêɴ ᴄᴀᴏ'
+    lore:
+      - '&7Di chuyển trên không tổng cộng &f25.000 block&7.'
+      - '&7Chỉ trạng thái bay hợp lệ mới được ghi nhận.'
+    season-xp: 140
+    rewards:
+      - 'eco give %player% 4000000'
+      - 'mc give %player% 900'
+
+  weekly_combat_power:
+    cycle: weekly
+    difficulty: hard
+    type: DAMAGE_DEALT
+    target: ANY
+    required: 50000
+    material: NETHERITE_AXE
+    title: '&#7DE2FFꜱứᴄ ᴍạɴʜ ᴄʜɪếɴ đấᴜ'
+    lore:
+      - '&7Gây tổng cộng &f50.000 sát thương &7lên mục tiêu hợp lệ.'
+      - '&7NPC, fake player và automation bị loại trừ.'
+    season-xp: 150
+    rewards:
+      - 'eco give %player% 4500000'
+      - 'mc give %player% 1000'
+
+  weekly_iron_delivery:
+    cycle: weekly
+    difficulty: hard
+    type: ITEM_SUBMIT
+    target: IRON_INGOT
+    required: 512
+    material: HOPPER_MINECART
+    title: '&#7DE2FFđơɴ ʜàɴɢ ꜱắᴛ'
+    lore:
+      - '&7Nộp tổng cộng &f512 Iron Ingot&7.'
+      - '&eShift + chuột trái &7trong GUI để nộp nhanh.'
+    season-xp: 150
+    rewards:
+      - 'eco give %player% 5000000'
+      - 'mc give %player% 1100'
+
+  weekly_treasure_hunter:
+    cycle: weekly
+    difficulty: hard
+    type: LOOT_CHEST
+    target: CHEST
+    required: 50
+    material: CHEST
+    title: '&#7DE2FFᴛʜợ ꜱăɴ ᴋʜᴏ ʙáᴜ'
+    lore:
+      - '&7Loot thành công &f50 rương &7được hệ thống ghi nhận.'
+      - '&7Mở đi mở lại cùng một thao tác không tự cộng vô hạn.'
+    season-xp: 160
+    rewards:
+      - 'eco give %player% 5500000'
+      - 'mc give %player% 1200'
+
+  monthly_playtime_legend:
+    cycle: monthly
+    difficulty: hard
+    type: PLAYTIME
+    target: ANY
+    required: 6000
+    material: CLOCK
+    title: '&#DFA7FFʜᴜʏềɴ ᴛʜᴏạɪ ᴛʜờɪ ɢɪᴀɴ'
+    lore:
+      - '&7Hoạt động đủ &f6.000 phút &7trong tháng.'
+      - '&7Thời gian AFK có thể được kiểm soát bởi server.'
+    season-xp: 300
+    rewards:
+      - 'eco give %player% 12000000'
+      - 'mc give %player% 2200'
+
+  monthly_stone_empire:
+    cycle: monthly
+    difficulty: hard
+    type: BREAK
+    target: STONE
+    required: 50000
+    material: BEACON
+    title: '&#DFA7FFđế ᴄʜế đá'
+    lore:
+      - '&7Khai thác &f50.000 Stone &7trong tháng hiện tại.'
+      - '&7Hệ thống chống đặt rồi phá vẫn được áp dụng.'
+    season-xp: 325
+    rewards:
+      - 'eco give %player% 14000000'
+      - 'mc give %player% 2400'
+
+  monthly_mob_conqueror:
+    cycle: monthly
+    difficulty: hard
+    type: KILL
+    target: ANY
+    required: 3000
+    material: DRAGON_HEAD
+    title: '&#DFA7FFᴋẻ ᴄʜɪɴʜ ᴘʜụᴄ ǫᴜáɪ ᴠậᴛ'
+    lore:
+      - '&7Tiêu diệt &f3.000 mob &7hợp lệ trong tháng.'
+      - '&7Spawn reason và custom mob tuân theo anti-exploit.'
+    season-xp: 350
+    rewards:
+      - 'eco give %player% 16000000'
+      - 'mc give %player% 2600'
+
+  monthly_vote_champion:
+    cycle: monthly
+    difficulty: hard
+    type: VOTE
+    target: ANY
+    required: 25
+    material: NETHER_STAR
+    title: '&#DFA7FFɴʜà ᴠô địᴄʜ ᴠᴏᴛᴇ'
+    lore:
+      - '&7Vote hợp lệ cho máy chủ &f25 lần &7trong tháng.'
+    season-xp: 350
+    rewards:
+      - 'eco give %player% 18000000'
+      - 'mc give %player% 2800'
+
+  monthly_wealth_builder:
+    cycle: monthly
+    difficulty: hard
+    type: MONEY_EARN
+    target: VAULT
+    required: 50000000
+    material: GOLD_BLOCK
+    title: '&#DFA7FFđạɪ ɢɪᴀ ᴛʜáɴɢ'
+    lore:
+      - '&7Kiếm thêm tổng cộng &f50.000.000 money &7qua Vault.'
+      - '&7Tiến độ dựa trên chênh lệch số dư hợp lệ.'
+    season-xp: 375
+    rewards:
+      - 'eco give %player% 20000000'
+      - 'mc give %player% 3000'
+
+  monthly_elytra_marathon:
+    cycle: monthly
+    difficulty: hard
+    type: GLIDE
+    target: ANY
+    required: 100000
+    material: PHANTOM_MEMBRANE
+    title: '&#DFA7FFᴍᴀʀᴀᴛʜᴏɴ ʙầᴜ ᴛʀờɪ'
+    lore:
+      - '&7Bay lượn bằng Elytra tổng cộng &f100.000 block&7.'
+      - '&7Tất cả tiến độ thuộc riêng cycle tháng hiện tại.'
+    season-xp: 400
+    rewards:
+      - 'eco give %player% 22000000'
+      - 'mc give %player% 3200'
+
+  seasonal_melon_festival:
+    cycle: seasonal
+    difficulty: medium
+    type: BREAK
+    target: MELON
+    required: 2000
+    material: MELON_SLICE
+    title: '&#FFB84Dʟễ ʜộɪ ᴅưᴀ ʜấᴜ'
+    lore:
+      - '&7Thu hoạch &f2.000 Melon &7trong sự kiện mùa.'
+      - '&7Thời gian hiển thị trong lore thuộc riêng cycle Seasonal.'
+    rerollable: false
+    season-xp: 550
+    rewards:
+      - 'eco give %player% 6500000'
+      - 'mc give %player% 1700'
+
+  seasonal_guardian_hunt:
+    cycle: seasonal
+    difficulty: hard
+    type: KILL
+    target: MYTHIC_SUMMER_GUARDIAN
+    required: 10
+    material: TRIDENT
+    title: '&#FFB84Dᴛʜợ ꜱăɴ ʜộ ᴠệ ᴍùᴀ'
+    lore:
+      - '&7Tiêu diệt &f10 Summer Guardian &7từ MythicMobs.'
+      - '&7Đổi target theo ID mob sự kiện của server nếu cần.'
+    rerollable: false
+    season-xp: 700
+    rewards:
+      - 'eco give %player% 10000000'
+      - 'mc give %player% 2200'
+
+  seasonal_sunflower_delivery:
+    cycle: seasonal
+    difficulty: easy
+    type: ITEM_SUBMIT
+    target: SUNFLOWER
+    required: 256
+    material: SUNFLOWER
+    title: '&#FFB84Dꜱắᴄ ᴠàɴɢ ᴍùᴀ ʜạ'
+    lore:
+      - '&7Nộp &f256 Sunflower &7cho sự kiện mùa.'
+      - '&eShift + chuột trái &7để nộp nhanh trong GUI.'
+    rerollable: false
+    season-xp: 350
+    rewards:
+      - 'eco give %player% 3500000'
+      - 'mc give %player% 1000'
+
+  seasonal_activity_marathon:
+    cycle: seasonal
+    difficulty: hard
+    type: PLAYTIME
+    target: ANY
+    required: 3000
+    material: AMETHYST_SHARD
+    title: '&#FFB84Dʜàɴʜ ᴛʀìɴʜ ᴍùᴀ'
+    lore:
+      - '&7Hoạt động đủ &f3.000 phút &7trong mùa hiện tại.'
+      - '&7Reset và thời gian còn lại chỉ theo cycle Seasonal.'
+    rerollable: false
+    season-xp: 800
+    rewards:
+      - 'eco give %player% 12000000'
+      - 'mc give %player% 2500'

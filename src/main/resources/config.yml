@@ -1,0 +1,207 @@
+# KoraQuest 1.1
+# Author: Ipsecuz_
+language-file: messages.yml
+metric: true
+
+settings:
+  # Tổng giới hạn trên tất cả cycle: Daily 15 + Weekly 10 + Monthly 10 + Seasonal 10.
+  max-active-quests-per-player: 45
+  config-schema-version: 110
+  broadcast-cycle-reset: true
+  send-progress-messages: true
+  progress-message-percent-step: 10
+  database-flush-ticks: 100
+  player-cache-unload-minutes: 10
+  # Tự cài quest mẫu mới nhưng không ghi đè quest đã tồn tại hoặc quest custom.
+  install-bundled-quest-updates: true
+  bundled-quest-pack-version: 301
+
+# Mỗi cycle có pool, progress, permission, GUI tab và lịch reset riêng.
+cycles:
+  daily:
+    enabled: true
+    display-name: '&#75FF75Nhiệm vụ ngày'
+    permission: ''
+    active-limit: 15
+    history-retention-days: 90
+    selection:
+      mode: WEIGHTED # FIXED, WEIGHTED, ALL
+      total-quests: 15
+      amounts: {easy: 2, medium: 1, hard: 0}
+      weights: {easy: 50, medium: 30, hard: 20}
+    reset:
+      type: CRON
+      expression: '0 0 * * *'
+      timezone: Asia/Ho_Chi_Minh
+  weekly:
+    enabled: true
+    display-name: '&#7DE2FFNhiệm vụ tuần'
+    permission: ''
+    active-limit: 10
+    history-retention-days: 180
+    selection:
+      mode: WEIGHTED
+      total-quests: 10
+      amounts: {easy: 0, medium: 1, hard: 1}
+      weights: {easy: 20, medium: 45, hard: 35}
+    reset:
+      type: WEEKLY
+      day: MONDAY
+      time: '00:00'
+      timezone: Asia/Ho_Chi_Minh
+  monthly:
+    enabled: true
+    display-name: '&#DFA7FFNhiệm vụ tháng'
+    permission: ''
+    active-limit: 10
+    history-retention-days: 365
+    selection:
+      mode: WEIGHTED
+      total-quests: 10
+      amounts: {easy: 0, medium: 0, hard: 1}
+      weights: {easy: 10, medium: 30, hard: 60}
+    reset:
+      type: MONTHLY
+      day-of-month: 1
+      time: '00:00'
+      timezone: Asia/Ho_Chi_Minh
+  seasonal:
+    enabled: true
+    display-name: '&#FFB84DSự kiện mùa'
+    permission: ''
+    active-limit: 10
+    history-retention-days: 730
+    selection:
+      mode: WEIGHTED
+      total-quests: 10
+      amounts: {easy: 0, medium: 0, hard: 0}
+      weights: {easy: 20, medium: 40, hard: 40}
+    reset:
+      # MANUAL: admin đổi mùa bằng /quest admin reset seasonal
+      type: MANUAL
+      timezone: Asia/Ho_Chi_Minh
+
+anti-exploit:
+  bypass-permission: koraquest.bypass.antiexploit
+  count-automation: false
+  placed-block-tracking: true
+  placed-block-expire-days: 7
+  gamemode-whitelist: [SURVIVAL, ADVENTURE]
+  break:
+    count-player-placed-blocks: false
+    count-creative-mode: false
+    count-silk-touch: true
+  kill:
+    allowed-spawn-reasons: [NATURAL, SPAWNER]
+    count-custom-named-mobs: false
+    count-mythic-mobs: true
+  fish:
+    count-hooked-entities: false
+  worlds:
+    blacklist: [spawn, build]
+    whitelist: []
+  integrations:
+    worldguard:
+      blacklist: []
+      whitelist: []
+    islands:
+      # SuperiorSkyblock2 hoặc BentoBox
+      require-member: false
+    plots:
+      # PlotSquared
+      require-member: false
+
+rewards:
+  retry-batch-size: 50
+  auto-retry-ticks: 6000
+  delivered-retention-days: 30
+
+reroll:
+  enabled: true
+  free-per-cycle: 1
+  blocked-quests: []
+  cost:
+    # FREE, VAULT, PLAYERPOINTS, COMMAND
+    type: VAULT
+    amount: 10000
+    # COMMAND chỉ dùng khi cần economy custom.
+    # Lệnh check nên trả true/false; để trống sẽ bỏ qua bước check.
+    check-command: ''
+    take-command: 'eco take %player% 10000'
+
+streak:
+  enabled: true
+  catch-up:
+    enabled: true
+  milestones:
+    3:
+      catchup-tokens: 0
+      commands: ['eco give %player% 5000']
+    7:
+      catchup-tokens: 1
+      commands: ['eco give %player% 25000']
+    30:
+      catchup-tokens: 2
+      commands: ['eco give %player% 150000']
+  perfect-week:
+    commands: ['eco give %player% 50000']
+
+season:
+  xp-per-level: 100
+  level-rewards:
+    5: {commands: ['eco give %player% 25000']}
+    10: {commands: ['eco give %player% 75000']}
+    25: {commands: ['eco give %player% 250000']}
+
+storage:
+  # SQLITE, MYSQL, MARIADB
+  type: SQLITE
+  host: 127.0.0.1
+  port: 3306
+  database: koraquest
+  username: root
+  password: ''
+  pool-size: 10
+  table-prefix: kq_
+
+network:
+  # Tự bật khi dùng MySQL/MariaDB. Có thể tắt nếu chỉ chạy một backend.
+  enabled: false
+  server-id: server-1
+  poll-ticks: 200
+  lock-timeout-seconds: 30
+  redis:
+    enabled: false
+    uri: redis://127.0.0.1:6379
+    channel: koraquest:sync
+
+bedrock:
+  enabled: true
+  # Floodgate + Cumulus được nhận diện tự động. Không có Floodgate sẽ dùng Java GUI.
+
+update-checker:
+  enabled: true
+  # ID resource chính thức của KoraQuest trên SpigotMC.
+  resource-id: 137091
+  interval-hours: 6
+  notify-console: true
+  notify-permission: koraquest.update-notify
+  # Để trống sẽ tự tạo link từ resource-id.
+  download-url: ''
+
+gui:
+  size: 54
+  # Cycle/type tabs stay on row 1. Quest icons are locked to centered rows 3 and 4.
+  # One page contains 14 quests; extra quests automatically create page 2/3/4/...
+  lock-quest-rows: true
+  quest-slots: [19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  filler-material: BLACK_STAINED_GLASS_PANE
+  previous-page: {slot: 45, material: ARROW}
+  filter: {slot: 46, material: HOPPER}
+  sort: {slot: 47, material: COMPARATOR}
+  search: {slot: 48, material: OAK_SIGN}
+  claim-all: {slot: 49, material: CHEST_MINECART}
+  info: {slot: 50, material: CLOCK}
+  next-page: {slot: 53, material: ARROW}
+  completion-animation: true
+  action-bar-tracker: true
