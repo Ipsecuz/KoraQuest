@@ -23,16 +23,6 @@ Every quest is configured in `quests.yml`, including its cycle, objective, targe
 
 KoraQuest does not require a specific economy, crate or storage plugin. Standard rewards are executed as configurable console commands, while developers can register custom transactional reward providers through the API.
 
-## Screenshots
-
-### Quest Menu
-
-![KoraQuest Quest Menu](https://i.postimg.cc/SxPfJm1M/image.png)
-
-### Commands
-
-![KoraQuest Commands](https://i.postimg.cc/zGpXjBYG/image.png)
-
 ---
 
 ## Main Features
