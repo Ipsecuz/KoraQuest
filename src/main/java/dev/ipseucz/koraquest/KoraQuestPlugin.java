@@ -1,11 +1,15 @@
 package dev.ipseucz.koraquest;
 
 import dev.ipseucz.koraquest.api.KoraQuestAPI;
+<<<<<<< HEAD
 import dev.ipseucz.koraquest.bedrock.BedrockFormService;
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 import dev.ipseucz.koraquest.command.QuestCommand;
 import dev.ipseucz.koraquest.config.MessageService;
 import dev.ipseucz.koraquest.config.QuestConfig;
 import dev.ipseucz.koraquest.data.PlayerDataService;
+<<<<<<< HEAD
 import dev.ipseucz.koraquest.editor.QuestEditor;
 import dev.ipseucz.koraquest.gui.QuestGui;
 import dev.ipseucz.koraquest.integration.IntegrationManager;
@@ -13,6 +17,10 @@ import dev.ipseucz.koraquest.listener.QuestListener;
 import dev.ipseucz.koraquest.model.ObjectiveType;
 import dev.ipseucz.koraquest.network.NetworkSyncService;
 import dev.ipseucz.koraquest.security.AntiExploitService;
+=======
+import dev.ipseucz.koraquest.gui.QuestGui;
+import dev.ipseucz.koraquest.listener.QuestListener;
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 import dev.ipseucz.koraquest.update.UpdateChecker;
 import dev.ipseucz.koraquest.util.PlatformDetector;
 import dev.ipseucz.koraquest.util.PluginPaths;
@@ -27,7 +35,10 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+<<<<<<< HEAD
 import java.lang.reflect.Method;
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -38,6 +49,7 @@ public final class KoraQuestPlugin extends JavaPlugin {
     private MessageService messages;
     private PlayerDataService playerData;
     private QuestManager questManager;
+<<<<<<< HEAD
     private IntegrationManager integrations;
     private AntiExploitService antiExploit;
     private BedrockFormService bedrockForms;
@@ -49,6 +61,11 @@ public final class KoraQuestPlugin extends JavaPlugin {
     private Object placeholderExpansion;
     private Method placeholderApplyMethod;
     private Method placeholderUnregisterMethod;
+=======
+    private QuestGui questGui;
+    private UpdateChecker updateChecker;
+    private Metrics metrics;
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 
     @Override
     public void onEnable() {
@@ -57,6 +74,7 @@ public final class KoraQuestPlugin extends JavaPlugin {
             scheduler = new SafeScheduler(this);
             questConfig = new QuestConfig(this);
             messages = new MessageService(this, questConfig);
+<<<<<<< HEAD
             playerData = new PlayerDataService(this, questConfig);
             integrations = new IntegrationManager(this, questConfig);
             questManager = new QuestManager(this, questConfig, messages, playerData, integrations);
@@ -68,11 +86,20 @@ public final class KoraQuestPlugin extends JavaPlugin {
             networkSync = new NetworkSyncService(this, questConfig, playerData);
 
             QuestCommand commandHandler = new QuestCommand(this, questManager, questConfig, messages, questGui, questEditor, updateChecker);
+=======
+            playerData = new PlayerDataService(this);
+            questManager = new QuestManager(this, questConfig, messages, playerData);
+            questGui = new QuestGui(this, questManager, questConfig, messages);
+            updateChecker = new UpdateChecker(this, questConfig, messages);
+
+            QuestCommand commandHandler = new QuestCommand(this, questManager, questConfig, messages, questGui, updateChecker);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
             PluginCommand command = Objects.requireNonNull(getCommand("quest"), "quest command is missing from plugin.yml");
             command.setExecutor(commandHandler);
             command.setTabCompleter(commandHandler);
 
             Bukkit.getPluginManager().registerEvents(questGui, this);
+<<<<<<< HEAD
             Bukkit.getPluginManager().registerEvents(questEditor, this);
             Bukkit.getPluginManager().registerEvents(integrations, this);
             Bukkit.getPluginManager().registerEvents(new QuestListener(this, questManager, playerData, antiExploit, integrations), this);
@@ -104,12 +131,26 @@ public final class KoraQuestPlugin extends JavaPlugin {
             networkSync.start();
             updateChecker.start();
             printBanner();
+=======
+            Bukkit.getPluginManager().registerEvents(new QuestListener(questManager), this);
+            Bukkit.getPluginManager().registerEvents(updateChecker, this);
+
+            KoraQuestAPI.bootstrap(questManager);
+            questManager.ensureCycle(false);
+            scheduler.runGlobalTimer(() -> questManager.ensureCycle(true), 1200L, 1200L);
+            scheduler.runGlobalTimer(playerData::flushDirtyAsync, questConfig.databaseFlushTicks(), questConfig.databaseFlushTicks());
+
+            setupMetrics();
+            printBanner();
+            updateChecker.start();
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         } catch (Throwable throwable) {
             getLogger().log(Level.SEVERE, "KoraQuest could not be enabled safely. The plugin will be disabled.", throwable);
             Bukkit.getPluginManager().disablePlugin(this);
         }
     }
 
+<<<<<<< HEAD
     private void tickPlaytime() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             scheduler.runEntity(player, () -> questManager.increment(player, ObjectiveType.PLAYTIME, "ANY", 1));
@@ -142,16 +183,46 @@ public final class KoraQuestPlugin extends JavaPlugin {
         if (scheduler != null) scheduler.shutdown();
         if (metrics != null) try { metrics.shutdown(); } catch (Throwable throwable) { getLogger().log(Level.WARNING, "Could not stop bStats cleanly", throwable); }
         if (playerData != null) try { playerData.shutdown(); } catch (Throwable throwable) { getLogger().log(Level.WARNING, "Could not finish database shutdown cleanly", throwable); }
+=======
+    @Override
+    public void onDisable() {
+        KoraQuestAPI.shutdown();
+        // Stop producers before flushing/closing SQLite. This prevents a repeating Folia task
+        // from enqueueing another database write while shutdown is in progress.
+        if (scheduler != null) {
+            scheduler.shutdown();
+        }
+        if (metrics != null) {
+            try {
+                metrics.shutdown();
+            } catch (Throwable throwable) {
+                getLogger().log(Level.WARNING, "Could not stop bStats cleanly", throwable);
+            }
+        }
+        if (playerData != null) {
+            try {
+                playerData.shutdown();
+            } catch (Throwable throwable) {
+                getLogger().log(Level.WARNING, "Could not finish the SQLite shutdown cleanly", throwable);
+            }
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     public void reloadPlugin(CommandSender sender) {
         try {
+<<<<<<< HEAD
             String oldStorage = questConfig.storageType();
             questConfig.reload();
             messages.reload();
             antiExploit.reloadPlacedBlocks();
             questManager.ensureCycles(false);
             if (!oldStorage.equalsIgnoreCase(questConfig.storageType())) getLogger().warning("Storage type changes require a full server restart.");
+=======
+            questConfig.reload();
+            messages.reload();
+            questManager.ensureCycle(false);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
             sendSafe(sender, "reloaded", Map.of());
         } catch (Throwable throwable) {
             getLogger().log(Level.SEVERE, "Could not reload KoraQuest", throwable);
@@ -159,6 +230,7 @@ public final class KoraQuestPlugin extends JavaPlugin {
         }
     }
 
+<<<<<<< HEAD
     public String applyExternalPlaceholders(Player player, String input) {
         if (input == null) return "";
         if (player == null || placeholderApplyMethod == null) return input;
@@ -176,13 +248,34 @@ public final class KoraQuestPlugin extends JavaPlugin {
 
     private void setupMetrics() {
         if (!questConfig.metricsEnabled()) return;
+=======
+    public void sendSafe(CommandSender sender, String key, Map<String, String> placeholders) {
+        if (sender == null || messages == null) {
+            return;
+        }
+        if (sender instanceof Player player) {
+            scheduler.runEntity(player, () -> messages.send(player, key, placeholders));
+        } else {
+            scheduler.runGlobal(() -> messages.send(sender, key, placeholders));
+        }
+    }
+
+    private void setupMetrics() {
+        if (!questConfig.metricsEnabled()) {
+            return;
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         try {
             metrics = new Metrics(this, 32623);
             metrics.addCustomChart(new SimplePie("platform", PlatformDetector::name));
             metrics.addCustomChart(new SingleLineChart("loaded_quests", () -> questConfig.quests().size()));
+<<<<<<< HEAD
             metrics.addCustomChart(new SingleLineChart("cached_players", playerData::cachedPlayerCount));
             metrics.addCustomChart(new SimplePie("storage", questConfig::storageType));
             metrics.addCustomChart(new SimplePie("bedrock_forms", () -> questConfig.bedrockFormsEnabled() ? "enabled" : "disabled"));
+=======
+            metrics.addCustomChart(new SimplePie("storage", () -> "SQLite"));
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         } catch (Throwable throwable) {
             getLogger().log(Level.WARNING, "Could not start bStats metrics", throwable);
         }
@@ -190,6 +283,7 @@ public final class KoraQuestPlugin extends JavaPlugin {
 
     private void printBanner() {
         String[] lines = {
+<<<<<<< HEAD
                 "  ██╗  ██╗ ██████╗ ██████╗  █████╗ ",
                 "  ██║ ██╔╝██╔═══██╗██╔══██╗██╔══██╗",
                 "  █████╔╝ ██║   ██║██████╔╝███████║",
@@ -210,4 +304,49 @@ public final class KoraQuestPlugin extends JavaPlugin {
     public QuestManager questManager() { return questManager; }
     public PlayerDataService playerData() { return playerData; }
     public IntegrationManager integrations() { return integrations; }
+=======
+                "                               ",
+                "  ▄▄▄▄   ▄▄▄                   ",
+                " █▀ ██  ██                     ",
+                "    ██ ██          ▄           ",
+                "    █████    ▄███▄ ████▄▄▀▀█▄  ",
+                "    ██ ██▄   ██ ██ ██   ▄█▀██  ",
+                "  ▀██▀  ▀██▄▄▀███▀▄█▀  ▄▀█▄██  ",
+                "                               ",
+                "   ▄▄▄▄                        ",
+                " ▄█▀▀███▄▄                  █▄ ",
+                " ██    ██                  ▄██▄",
+                " ██    ██ ██ ██ ▄█▀█▄ ▄██▀█ ██ ",
+                " ██  ▄ ██ ██ ██ ██▄█▀ ▀███▄ ██ ",
+                "  ▀█████▄▄▀██▀█▄▀█▄▄▄█▄▄██▀▄██ ",
+                "       ▀█                      ",
+                "                               "
+        };
+        for (String line : lines) {
+            Bukkit.getConsoleSender().sendMessage(Text.color("&e" + line));
+        }
+        Bukkit.getConsoleSender().sendMessage(Text.color("&ePlatform: Paper/Folia (detected: "
+                + PlatformDetector.name() + ") | Version: " + getDescription().getVersion()));
+        Bukkit.getConsoleSender().sendMessage(Text.color("&eLoaded quests: " + questConfig.quests().size()));
+        if (!questConfig.validationErrors().isEmpty()) {
+            getLogger().warning("Quest validation issues: " + questConfig.validationErrors().size() + " (use /quest admin validate)");
+        }
+    }
+
+    public SafeScheduler scheduler() {
+        return scheduler;
+    }
+
+    public QuestConfig questConfig() {
+        return questConfig;
+    }
+
+    public MessageService messages() {
+        return messages;
+    }
+
+    public QuestManager questManager() {
+        return questManager;
+    }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 }

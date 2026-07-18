@@ -1,5 +1,6 @@
 package dev.ipseucz.koraquest.api;
 
+<<<<<<< HEAD
 import dev.ipseucz.koraquest.model.ObjectiveType;
 import dev.ipseucz.koraquest.model.QuestDefinition;
 import org.bukkit.Bukkit;
@@ -130,4 +131,39 @@ public final class KoraQuestAPI {
     public interface ObjectiveProvider { void progress(Player player, String target, int amount); }
     @FunctionalInterface
     public interface RewardProvider { boolean deliver(Player player, QuestDefinition quest, String value); }
+=======
+import dev.ipseucz.koraquest.QuestManager;
+import dev.ipseucz.koraquest.model.ObjectiveType;
+import org.bukkit.entity.Player;
+
+/**
+ * Lightweight API for quest types that are not covered by Bukkit events.
+ * Calls must be made from the player's owning thread on Folia.
+ */
+public final class KoraQuestAPI {
+    private static volatile QuestManager manager;
+
+    private KoraQuestAPI() {
+    }
+
+    public static void bootstrap(QuestManager questManager) {
+        manager = questManager;
+    }
+
+    public static void shutdown() {
+        manager = null;
+    }
+
+    public static boolean progressQuest(Player player, String questId, int amount) {
+        QuestManager current = manager;
+        return current != null && player != null && current.progressById(player, questId, amount);
+    }
+
+    public static void progressCustom(Player player, String target, int amount) {
+        QuestManager current = manager;
+        if (current != null && player != null) {
+            current.increment(player, ObjectiveType.CUSTOM, target, amount);
+        }
+    }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 }

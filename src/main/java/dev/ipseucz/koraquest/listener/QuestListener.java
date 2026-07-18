@@ -1,5 +1,6 @@
 package dev.ipseucz.koraquest.listener;
 
+<<<<<<< HEAD
 import dev.ipseucz.koraquest.KoraQuestPlugin;
 import dev.ipseucz.koraquest.QuestManager;
 import dev.ipseucz.koraquest.data.PlayerDataService;
@@ -15,6 +16,14 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
+=======
+import dev.ipseucz.koraquest.QuestManager;
+import dev.ipseucz.koraquest.model.ObjectiveType;
+import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -22,6 +31,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.EntityBreedEvent;
+<<<<<<< HEAD
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -114,36 +124,67 @@ public final class QuestListener implements Listener {
         brewingOwners.entrySet().removeIf(entry -> entry.getValue().equals(uuid));
         lootedContainers.removeIf(key -> key.startsWith(uuid + "|"));
         manager.cleanupPlayer(uuid);
+=======
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityTameEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.FurnaceExtractEvent;
+import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.PlayerShearEntityEvent;
+import org.bukkit.inventory.ItemStack;
+
+public final class QuestListener implements Listener {
+    private final QuestManager manager;
+
+    public QuestListener(QuestManager manager) {
+        this.manager = manager;
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onKill(EntityDeathEvent event) {
         Player killer = event.getEntity().getKiller();
+<<<<<<< HEAD
         if (killer == null || !antiExploit.allowKill(event)) return;
         String reason;
         try { reason = event.getEntity().getEntitySpawnReason().name(); }
         catch (Throwable ignored) { reason = "DEFAULT"; }
         manager.incrementAliases(killer, ObjectiveType.KILL, manager.integrations().entityTargets(event.getEntity()), 1,
                 context(killer, event.getEntity().getLocation().getBlockY(), reason, false));
+=======
+        if (killer != null) {
+            manager.increment(killer, ObjectiveType.KILL, event.getEntityType().name(), 1);
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBreak(BlockBreakEvent event) {
+<<<<<<< HEAD
         if (!antiExploit.allowBreak(event)) return;
         manager.increment(event.getPlayer(), ObjectiveType.BREAK, event.getBlock().getType().name(), 1,
                 context(event.getPlayer(), event.getBlock().getY(), "", false));
+=======
+        manager.increment(event.getPlayer(), ObjectiveType.BREAK, event.getBlock().getType().name(), 1);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlace(BlockPlaceEvent event) {
+<<<<<<< HEAD
         antiExploit.recordPlacement(event);
         if (!antiExploit.canCount(event.getPlayer())) return;
         manager.increment(event.getPlayer(), ObjectiveType.PLACE, event.getBlockPlaced().getType().name(), 1,
                 context(event.getPlayer(), event.getBlockPlaced().getY(), "", false));
+=======
+        manager.increment(event.getPlayer(), ObjectiveType.PLACE, event.getBlockPlaced().getType().name(), 1);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onCraft(CraftItemEvent event) {
+<<<<<<< HEAD
         if (!(event.getWhoClicked() instanceof Player player) || !antiExploit.canCount(player)) return;
         ItemStack result = event.getRecipe().getResult();
         if (result == null || result.getType().isAir()) return;
@@ -173,44 +214,94 @@ public final class QuestListener implements Listener {
 
     private int safeMultiply(int first, int second) {
         return (int) Math.min(Integer.MAX_VALUE, Math.max(0L, (long) first * second));
+=======
+        if (!(event.getWhoClicked() instanceof Player player)) {
+            return;
+        }
+        ItemStack result = event.getRecipe().getResult();
+        if (result.getType() == Material.AIR) {
+            return;
+        }
+        manager.increment(player, ObjectiveType.CRAFT, result.getType().name(), Math.max(1, result.getAmount()));
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onFish(PlayerFishEvent event) {
+<<<<<<< HEAD
         if (!antiExploit.allowFish(event)) return;
         Entity caught = event.getCaught();
         java.util.Collection<String> targets = caught instanceof Item item ? manager.integrations().itemTargets(item.getItemStack())
                 : caught == null ? java.util.List.of("ANY") : manager.integrations().entityTargets(caught);
         manager.incrementAliases(event.getPlayer(), ObjectiveType.FISH, targets, 1);
+=======
+        if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH
+                && event.getState() != PlayerFishEvent.State.CAUGHT_ENTITY) {
+            return;
+        }
+        Entity caught = event.getCaught();
+        String target = "ANY";
+        if (caught instanceof Item item) {
+            target = item.getItemStack().getType().name();
+        } else if (caught != null) {
+            target = caught.getType().name();
+        }
+        manager.increment(event.getPlayer(), ObjectiveType.FISH, target, 1);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onEnchant(EnchantItemEvent event) {
+<<<<<<< HEAD
         if (antiExploit.canCount(event.getEnchanter())) manager.incrementAliases(event.getEnchanter(), ObjectiveType.ENCHANT, manager.integrations().itemTargets(event.getItem()), 1);
+=======
+        manager.increment(event.getEnchanter(), ObjectiveType.ENCHANT, event.getItem().getType().name(), 1);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBreed(EntityBreedEvent event) {
+<<<<<<< HEAD
         if (event.getBreeder() instanceof Player player && antiExploit.canCount(player)) manager.incrementAliases(player, ObjectiveType.BREED, manager.integrations().entityTargets(event.getEntity()), 1);
+=======
+        if (event.getBreeder() instanceof Player player) {
+            manager.increment(player, ObjectiveType.BREED, event.getEntityType().name(), 1);
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onTame(EntityTameEvent event) {
+<<<<<<< HEAD
         if (event.getOwner() instanceof Player player && antiExploit.canCount(player)) manager.incrementAliases(player, ObjectiveType.TAME, manager.integrations().entityTargets(event.getEntity()), 1);
+=======
+        if (event.getOwner() instanceof Player player) {
+            manager.increment(player, ObjectiveType.TAME, event.getEntityType().name(), 1);
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onConsume(PlayerItemConsumeEvent event) {
+<<<<<<< HEAD
         if (antiExploit.canCount(event.getPlayer())) manager.incrementAliases(event.getPlayer(), ObjectiveType.CONSUME, manager.integrations().itemTargets(event.getItem()), 1);
+=======
+        manager.increment(event.getPlayer(), ObjectiveType.CONSUME, event.getItem().getType().name(), 1);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onSmelt(FurnaceExtractEvent event) {
+<<<<<<< HEAD
         if (antiExploit.canCount(event.getPlayer())) manager.increment(event.getPlayer(), ObjectiveType.SMELT, event.getItemType().name(), Math.max(1, event.getItemAmount()));
+=======
+        manager.increment(event.getPlayer(), ObjectiveType.SMELT, event.getItemType().name(), Math.max(1, event.getItemAmount()));
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onShear(PlayerShearEntityEvent event) {
+<<<<<<< HEAD
         if (antiExploit.canCount(event.getPlayer())) manager.incrementAliases(event.getPlayer(), ObjectiveType.SHEAR, manager.integrations().entityTargets(event.getEntity()), 1);
     }
 
@@ -425,5 +516,8 @@ public final class QuestListener implements Listener {
 
     private String locationKey(Location location) {
         return location.getWorld().getUID() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
+=======
+        manager.increment(event.getPlayer(), ObjectiveType.SHEAR, event.getEntity().getType().name(), 1);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 }

@@ -2,16 +2,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+<<<<<<< HEAD
     <groupId>dev.ipseucz</groupId>
     <artifactId>KoraQuest</artifactId>
     <version>1.1</version>
     <packaging>jar</packaging>
     <name>KoraQuest</name>
     <description>Professional multi-cycle quest system for Paper or Folia 1.21.11</description>
+=======
+
+    <groupId>dev.ipseucz</groupId>
+    <artifactId>KoraQuest</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>KoraQuest</name>
+    <description>Market-ready quest system for Paper, Spigot and Folia 1.21.x</description>
+
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+<<<<<<< HEAD
     <repositories>
         <repository><id>papermc</id><url>https://repo.papermc.io/repository/maven-public/</url></repository>
         <repository><id>placeholderapi</id><url>https://repo.helpch.at/releases/</url></repository>
@@ -22,10 +35,36 @@
         <dependency><groupId>me.clip</groupId><artifactId>placeholderapi</artifactId><version>2.12.3</version><scope>provided</scope></dependency>
         <dependency><groupId>com.zaxxer</groupId><artifactId>HikariCP</artifactId><version>6.3.0</version><scope>provided</scope></dependency>
     </dependencies>
+=======
+
+    <repositories>
+        <repository>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.21.11-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.2.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     <build>
         <finalName>KoraQuest-${project.version}</finalName>
         <plugins>
             <plugin>
+<<<<<<< HEAD
                 <groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.13.0</version>
                 <configuration><release>21</release><encoding>UTF-8</encoding></configuration>
             </plugin>
@@ -53,6 +92,46 @@
                                 <include>dev/ipseucz/koraquest/model/**</include>
                             </includes>
                         </configuration>
+=======
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>21</release>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <minimizeJar>true</minimizeJar>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>dev.ipseucz.koraquest.libs.bstats</shadedPattern>
+                        </relocation>
+                    </relocations>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
                     </execution>
                 </executions>
             </plugin>

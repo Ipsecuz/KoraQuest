@@ -13,17 +13,24 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 
+<<<<<<< HEAD
 /**
  * Folia-safe scheduler facade.
  * Only repeating task handles are retained. One-shot tasks are owned by the
  * platform scheduler and are automatically discarded after execution, which
  * prevents the old unbounded handle list leak.
  */
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 public final class SafeScheduler {
     private final Plugin plugin;
     private final boolean folia;
     private final AtomicBoolean stopped = new AtomicBoolean(false);
+<<<<<<< HEAD
     private final List<Object> repeatingHandles = new CopyOnWriteArrayList<>();
+=======
+    private final List<Object> handles = new CopyOnWriteArrayList<>();
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 
     public SafeScheduler(Plugin plugin) {
         this.plugin = plugin;
@@ -35,11 +42,18 @@ public final class SafeScheduler {
     }
 
     public void runGlobal(Runnable runnable) {
+<<<<<<< HEAD
         if (!canRun(runnable)) return;
+=======
+        if (!canRun(runnable)) {
+            return;
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         if (folia) {
             try {
                 Object scheduler = Bukkit.class.getMethod("getGlobalRegionScheduler").invoke(null);
                 scheduler.getClass().getMethod("execute", Plugin.class, Runnable.class).invoke(scheduler, plugin, runnable);
+<<<<<<< HEAD
             } catch (ReflectiveOperationException exception) {
                 logFailure("global execute", exception);
             }
@@ -50,11 +64,27 @@ public final class SafeScheduler {
 
     public void runGlobalLater(Runnable runnable, long delayTicks) {
         if (!canRun(runnable)) return;
+=======
+                return;
+            } catch (ReflectiveOperationException exception) {
+                logFailure("global execute", exception);
+                return;
+            }
+        }
+        addHandle(Bukkit.getScheduler().runTask(plugin, runnable));
+    }
+
+    public void runGlobalLater(Runnable runnable, long delayTicks) {
+        if (!canRun(runnable)) {
+            return;
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         long delay = Math.max(1L, delayTicks);
         if (folia) {
             try {
                 Object scheduler = Bukkit.class.getMethod("getGlobalRegionScheduler").invoke(null);
                 Method method = scheduler.getClass().getMethod("runDelayed", Plugin.class, Consumer.class, long.class);
+<<<<<<< HEAD
                 method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run(), delay);
             } catch (ReflectiveOperationException exception) {
                 logFailure("global delayed task", exception);
@@ -66,12 +96,30 @@ public final class SafeScheduler {
 
     public void runGlobalTimer(Runnable runnable, long delayTicks, long periodTicks) {
         if (!canRun(runnable)) return;
+=======
+                Object handle = method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run(), delay);
+                addHandle(handle);
+                return;
+            } catch (ReflectiveOperationException exception) {
+                logFailure("global delayed task", exception);
+                return;
+            }
+        }
+        addHandle(Bukkit.getScheduler().runTaskLater(plugin, runnable, delay));
+    }
+
+    public void runGlobalTimer(Runnable runnable, long delayTicks, long periodTicks) {
+        if (!canRun(runnable)) {
+            return;
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         long delay = Math.max(1L, delayTicks);
         long period = Math.max(1L, periodTicks);
         if (folia) {
             try {
                 Object scheduler = Bukkit.class.getMethod("getGlobalRegionScheduler").invoke(null);
                 Method method = scheduler.getClass().getMethod("runAtFixedRate", Plugin.class, Consumer.class, long.class, long.class);
+<<<<<<< HEAD
                 addRepeatingHandle(method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run(), delay, period));
             } catch (ReflectiveOperationException exception) {
                 logFailure("global repeating task", exception);
@@ -79,6 +127,18 @@ public final class SafeScheduler {
             return;
         }
         addRepeatingHandle(Bukkit.getScheduler().runTaskTimer(plugin, runnable, delay, period));
+=======
+                Object handle = method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run(), delay, period);
+                addHandle(handle);
+                return;
+            } catch (ReflectiveOperationException exception) {
+                logFailure("global repeating task", exception);
+                return;
+            }
+        }
+        BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, runnable, delay, period);
+        addHandle(task);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     public void runEntity(Player player, Runnable runnable) {
@@ -86,12 +146,19 @@ public final class SafeScheduler {
     }
 
     public void runEntityLater(Player player, Runnable runnable, long delayTicks) {
+<<<<<<< HEAD
         if (player == null || !canRun(runnable)) return;
+=======
+        if (player == null || !canRun(runnable)) {
+            return;
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         long delay = Math.max(1L, delayTicks);
         if (folia) {
             try {
                 Object scheduler = player.getClass().getMethod("getScheduler").invoke(player);
                 Method method = scheduler.getClass().getMethod("runDelayed", Plugin.class, Consumer.class, Runnable.class, long.class);
+<<<<<<< HEAD
                 method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run(), null, delay);
             } catch (ReflectiveOperationException exception) {
                 logFailure("entity task for " + player.getName(), exception);
@@ -103,10 +170,28 @@ public final class SafeScheduler {
 
     public void runAsync(Runnable runnable) {
         if (!canRun(runnable)) return;
+=======
+                Object handle = method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run(), null, delay);
+                addHandle(handle);
+                return;
+            } catch (ReflectiveOperationException exception) {
+                logFailure("entity task for " + player.getName(), exception);
+                return;
+            }
+        }
+        addHandle(Bukkit.getScheduler().runTaskLater(plugin, runnable, delay));
+    }
+
+    public void runAsync(Runnable runnable) {
+        if (!canRun(runnable)) {
+            return;
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         if (folia) {
             try {
                 Object scheduler = Bukkit.class.getMethod("getAsyncScheduler").invoke(null);
                 Method method = scheduler.getClass().getMethod("runNow", Plugin.class, Consumer.class);
+<<<<<<< HEAD
                 method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run());
             } catch (ReflectiveOperationException exception) {
                 logFailure("async task", exception);
@@ -118,10 +203,28 @@ public final class SafeScheduler {
 
     public void runAsyncLater(Runnable runnable, long delay, TimeUnit unit) {
         if (!canRun(runnable)) return;
+=======
+                Object handle = method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run());
+                addHandle(handle);
+                return;
+            } catch (ReflectiveOperationException exception) {
+                logFailure("async task", exception);
+                return;
+            }
+        }
+        addHandle(Bukkit.getScheduler().runTaskAsynchronously(plugin, runnable));
+    }
+
+    public void runAsyncLater(Runnable runnable, long delay, TimeUnit unit) {
+        if (!canRun(runnable)) {
+            return;
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         if (folia) {
             try {
                 Object scheduler = Bukkit.class.getMethod("getAsyncScheduler").invoke(null);
                 Method method = scheduler.getClass().getMethod("runDelayed", Plugin.class, Consumer.class, long.class, TimeUnit.class);
+<<<<<<< HEAD
                 method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run(), Math.max(0L, delay), unit);
             } catch (ReflectiveOperationException exception) {
                 logFailure("delayed async task", exception);
@@ -136,6 +239,28 @@ public final class SafeScheduler {
         if (!stopped.compareAndSet(false, true)) return;
         for (Object handle : repeatingHandles) cancel(handle);
         repeatingHandles.clear();
+=======
+                Object handle = method.invoke(scheduler, plugin, (Consumer<Object>) ignored -> runnable.run(), Math.max(0L, delay), unit);
+                addHandle(handle);
+                return;
+            } catch (ReflectiveOperationException exception) {
+                logFailure("delayed async task", exception);
+                return;
+            }
+        }
+        long ticks = Math.max(1L, unit.toMillis(Math.max(0L, delay)) / 50L);
+        addHandle(Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, runnable, ticks));
+    }
+
+    public void shutdown() {
+        if (!stopped.compareAndSet(false, true)) {
+            return;
+        }
+        for (Object handle : handles) {
+            cancel(handle);
+        }
+        handles.clear();
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         if (folia) {
             cancelFoliaScheduler("getGlobalRegionScheduler");
             cancelFoliaScheduler("getAsyncScheduler");
@@ -148,21 +273,42 @@ public final class SafeScheduler {
         return runnable != null && !stopped.get() && plugin.isEnabled();
     }
 
+<<<<<<< HEAD
     private void addRepeatingHandle(Object handle) {
         if (handle == null) return;
+=======
+    private void addHandle(Object handle) {
+        if (handle == null) {
+            return;
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         if (stopped.get()) {
             cancel(handle);
             return;
         }
+<<<<<<< HEAD
         repeatingHandles.add(handle);
         if (stopped.get() && repeatingHandles.remove(handle)) cancel(handle);
+=======
+        handles.add(handle);
+        // Close the small race where shutdown starts between the stopped check and add().
+        if (stopped.get() && handles.remove(handle)) {
+            cancel(handle);
+        }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     private void cancel(Object handle) {
         try {
             handle.getClass().getMethod("cancel").invoke(handle);
         } catch (ReflectiveOperationException ignored) {
+<<<<<<< HEAD
             if (handle instanceof BukkitTask task) task.cancel();
+=======
+            if (handle instanceof BukkitTask task) {
+                task.cancel();
+            }
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         }
     }
 
@@ -175,7 +321,11 @@ public final class SafeScheduler {
     }
 
     private void logFailure(String action, Throwable throwable) {
+<<<<<<< HEAD
         plugin.getLogger().log(Level.SEVERE,
                 "Could not schedule " + action + ". The task was not run to avoid an unsafe thread fallback.", throwable);
+=======
+        plugin.getLogger().log(Level.SEVERE, "Could not schedule " + action + ". The task was not run to avoid an unsafe thread fallback.", throwable);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 }

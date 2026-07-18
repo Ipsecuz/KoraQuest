@@ -10,7 +10,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.io.InputStream;
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -46,6 +49,7 @@ public final class MessageService {
             }
         }
         messages = YamlConfiguration.loadConfiguration(activeFile);
+<<<<<<< HEAD
         InputStream bundledStream = plugin.getResource("message/" + name);
         if (bundledStream == null) bundledStream = plugin.getResource("message/messages.yml");
         try (InputStream stream = bundledStream;
@@ -53,6 +57,11 @@ public final class MessageService {
             defaults = YamlConfiguration.loadConfiguration(reader);
             messages.setDefaults(defaults);
             if (migrateLegacyCommandHelp()) messages.save(activeFile);
+=======
+        try (InputStreamReader reader = new InputStreamReader(plugin.getResource("message/messages.yml"), StandardCharsets.UTF_8)) {
+            defaults = YamlConfiguration.loadConfiguration(reader);
+            messages.setDefaults(defaults);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         } catch (Exception exception) {
             defaults = new YamlConfiguration();
             plugin.getLogger().warning("Could not load bundled message defaults: " + exception.getMessage());
@@ -60,6 +69,7 @@ public final class MessageService {
         prefix = messages.getString("prefix", "&#FFB84D&lKoraQuest &8» &f");
     }
 
+<<<<<<< HEAD
 
     /**
      * Upgrades only the command-help lists shipped by older KoraQuest builds.
@@ -110,6 +120,15 @@ public final class MessageService {
             return fallback;
         }
         return fallbackValue == null ? "" : fallbackValue;
+=======
+    public synchronized String raw(String path) {
+        String value = messages.getString(path);
+        if (value != null) {
+            return value;
+        }
+        String fallback = defaults.getString(path);
+        return fallback == null ? path : fallback;
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     public synchronized List<String> rawList(String path) {
@@ -170,6 +189,7 @@ public final class MessageService {
     }
 
     public synchronized String difficultyName(Difficulty difficulty) {
+<<<<<<< HEAD
         if (difficulty == null) {
             return rawOr("gui.difficulty.unknown.name", "&7Không xác định");
         }
@@ -183,6 +203,9 @@ public final class MessageService {
 
     public synchronized String guiValue(String path, String fallbackValue) {
         return rawOr(path, fallbackValue);
+=======
+        return raw("gui.difficulty." + difficulty.key() + ".name");
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 
     private Map<String, String> merge(Map<String, String> placeholders) {

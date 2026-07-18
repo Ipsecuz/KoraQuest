@@ -17,6 +17,7 @@ public enum ObjectiveType {
     CONSUME(TargetKind.MATERIAL),
     SMELT(TargetKind.MATERIAL),
     SHEAR(TargetKind.ENTITY),
+<<<<<<< HEAD
     PLAYTIME(TargetKind.FREE),
     WALK(TargetKind.FREE),
     SPRINT(TargetKind.FREE),
@@ -52,6 +53,8 @@ public enum ObjectiveType {
     SMITHING(TargetKind.MATERIAL),
     STONECUT(TargetKind.MATERIAL),
     LOOT_CHEST(TargetKind.MATERIAL),
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     CUSTOM(TargetKind.FREE);
 
     private final TargetKind targetKind;
@@ -72,12 +75,19 @@ public enum ObjectiveType {
             return true;
         }
         String normalized = target.trim().toUpperCase(Locale.ROOT);
+<<<<<<< HEAD
         boolean externalId = normalized.matches("[A-Z0-9_.:-]{2,128}") && (normalized.contains(":")
                 || normalized.startsWith("MYTHIC_") || normalized.startsWith("CITIZENS_"));
         return switch (targetKind) {
             case MATERIAL -> Material.matchMaterial(normalized) != null || externalId;
             case ENTITY -> entityExists(normalized) || externalId;
             case MIXED -> Material.matchMaterial(normalized) != null || entityExists(normalized) || externalId;
+=======
+        return switch (targetKind) {
+            case MATERIAL -> Material.matchMaterial(normalized) != null;
+            case ENTITY -> entityExists(normalized);
+            case MIXED -> Material.matchMaterial(normalized) != null || entityExists(normalized);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
             case FREE -> true;
         };
     }

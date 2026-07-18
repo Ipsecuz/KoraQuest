@@ -1,4 +1,5 @@
 name: KoraQuest
+<<<<<<< HEAD
 version: '1.1'
 main: dev.ipseucz.koraquest.KoraQuestPlugin
 api-version: '1.21'
@@ -36,10 +37,23 @@ commands:
   quest:
     description: Open and manage KoraQuest
     usage: /quest help
+=======
+version: 1.0
+main: dev.ipseucz.koraquest.KoraQuestPlugin
+api-version: '1.21'
+author: Ipsecuz_
+description: Configurable quest system for Paper, Spigot and Folia
+folia-supported: true
+libraries:
+  - org.xerial:sqlite-jdbc:3.53.2.0
+commands:
+  quest:
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     aliases: [quests, koraquest]
 permissions:
   koraquest.use:
     default: true
+<<<<<<< HEAD
     children:
       koraquest.command.open: true
       koraquest.command.accept: true
@@ -81,3 +95,9 @@ permissions:
   koraquest.limit.seasonal.10: {default: false}
   koraquest.reroll.2: {default: false}
   koraquest.booster.25: {default: false}
+=======
+  koraquest.admin:
+    default: op
+  koraquest.update-notify:
+    default: op
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b

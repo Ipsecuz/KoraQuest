@@ -3,11 +3,17 @@ package dev.ipseucz.koraquest.model;
 import org.bukkit.Material;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Locale;
 
 public record QuestDefinition(
         String id,
         String cycle,
+=======
+
+public record QuestDefinition(
+        String id,
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
         Difficulty difficulty,
         ObjectiveType type,
         String target,
@@ -15,6 +21,7 @@ public record QuestDefinition(
         Material material,
         String title,
         List<String> lore,
+<<<<<<< HEAD
         List<String> requirements,
         List<String> rewards,
         QuestFilters filters,
@@ -43,5 +50,12 @@ public record QuestDefinition(
                            QuestFilters filters, boolean rerollable) {
         this(id, cycle, difficulty, type, target, required, material, title, lore, List.of(), rewards,
                 filters, rerollable, "", 0L, 0, "", "");
+=======
+        List<String> rewards
+) {
+    public QuestDefinition {
+        lore = lore == null ? List.of() : List.copyOf(lore);
+        rewards = rewards == null ? List.of() : List.copyOf(rewards);
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     }
 }

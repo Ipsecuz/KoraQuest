@@ -1,5 +1,6 @@
 prefix: '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8» &f'
 messages:
+<<<<<<< HEAD
   no-permission: '%prefix%&#FF6B6BBạn không có quyền thực hiện thao tác này.'
   player-only: '%prefix%&#FF6B6BLệnh này chỉ dùng được trong game.'
   player-not-found: '%prefix%&#FF6B6BKhông tìm thấy người chơi đang online.'
@@ -335,3 +336,146 @@ validation-errors:
   invalid-cycle: '&cCycle %cycle% không hợp lệ.'
   invalid-quest-id: '&cQuest %quest_id% có ID không hợp lệ.'
   invalid-quest: '&cQuest %quest_id% có dữ liệu không hợp lệ. Xem console.'
+=======
+  no-permission: '%prefix%&#FF5C5CBạn không có quyền dùng lệnh này.'
+  player-only: '%prefix%&#FF5C5CLệnh này chỉ dùng được trong game.'
+  unknown-command: '%prefix%&#FF5C5CLệnh không tồn tại. Dùng &e/quest help&#FF5C5C.'
+  loading: '%prefix%&#FFD36ADữ liệu nhiệm vụ đang được chuẩn bị, hãy thử lại.'
+  reloaded: '%prefix%&#75FF75Đã reload config, ngôn ngữ và danh sách nhiệm vụ.'
+  forced-reset: '%prefix%&#75FF75Đã tạo lại danh sách nhiệm vụ hằng ngày.'
+  daily-reset: '%prefix%&#FFD36ADanh sách nhiệm vụ hôm nay đã được làm mới! Dùng &e/quest&#FFD36A để xem.'
+  quest-not-found: '%prefix%&#FF5C5CKhông tìm thấy nhiệm vụ &e%quest_id%&#FF5C5C.'
+  quest-not-daily: '%prefix%&#FF5C5CNhiệm vụ này không nằm trong danh sách hôm nay.'
+  quest-already-active: '%prefix%&#FFD36ABạn đang nhận nhiệm vụ này rồi.'
+  quest-already-completed: '%prefix%&#FF5C5CBạn đã hoàn thành nhiệm vụ này trong chu kỳ hiện tại.'
+  quest-active-limit: '%prefix%&#FF5C5CBạn chỉ có thể nhận tối đa &e%limit% &#FF5C5Cnhiệm vụ cùng lúc.'
+  quest-accepted: '%prefix%&#75FF75Đã nhận nhiệm vụ &#FFFFFF%quest_name%&#75FF75.'
+  quest-cancelled: '%prefix%&#FFD36AĐã hủy nhiệm vụ &#FFFFFF%quest_name%&#FFD36A.'
+  quest-not-active: '%prefix%&#FF5C5CBạn chưa nhận nhiệm vụ này.'
+  quest-not-ready: '%prefix%&#FFD36ANhiệm vụ chưa hoàn thành: &f%progress%&7/&f%required%&#FFD36A.'
+  quest-progress: '%prefix%&#72D6FF%quest_name% &8» &f%progress%&7/&f%required%'
+  quest-ready: '%prefix%&#75FF75Nhiệm vụ &#FFFFFF%quest_name% &#75FF75đã hoàn tất! Mở &e/quest &#75FF75để nhận thưởng.'
+  quest-completed: '%prefix%&#75FF75Hoàn thành &#FFFFFF%quest_name%&#75FF75! Phần thưởng đã được trao.'
+  reward-command-failed: '%prefix%&#FF5C5CMột custom command phần thưởng không thể thực thi. Hãy liên hệ quản trị viên.'
+  active-empty: '%prefix%&#FFD36ABạn chưa nhận nhiệm vụ nào.'
+  active-header: '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8- &#FFFFFFɴʜɪệᴍ ᴠụ đᴀɴɢ ɴʜậɴ'
+  active-line: '&#8A8A8A- &#FFFFFF%quest_name% &8(&f%progress%&7/&f%required%&8)'
+  admin-create-usage: '%prefix%&#FFD36ADùng: &e/quest admin create <id> <easy|medium|hard> <type> <target> <required> [material]'
+  admin-created: '%prefix%&#75FF75Đã tạo nhiệm vụ &f%quest_id%&#75FF75. Hãy chỉnh title, lore và rewards trong quests.yml.'
+  admin-create-exists: '%prefix%&#FF5C5CID nhiệm vụ đã tồn tại.'
+  admin-create-invalid-id: '%prefix%&#FF5C5CID chỉ được chứa a-z, 0-9, dấu gạch dưới hoặc gạch ngang.'
+  admin-delete-usage: '%prefix%&#FFD36ADùng: &e/quest admin delete <id>'
+  admin-deleted: '%prefix%&#75FF75Đã xóa nhiệm vụ &f%quest_id%&#75FF75.'
+  admin-progress-usage: '%prefix%&#FFD36ADùng: &e/quest admin progress <player> <quest-id> [amount]'
+  admin-progressed: '%prefix%&#75FF75Đã cộng &f%amount% &#75FF75tiến độ cho &f%player%&#75FF75.'
+  player-not-found: '%prefix%&#FF5C5CKhông tìm thấy người chơi đang online.'
+  invalid-number: '%prefix%&#FF5C5CGiá trị số không hợp lệ.'
+  invalid-type: '%prefix%&#FF5C5CLoại nhiệm vụ không hợp lệ. Dùng &e/quest admin types&#FF5C5C.'
+  invalid-target: '%prefix%&#FF5C5CTarget không hợp lệ với loại nhiệm vụ đã chọn.'
+  validation-ok: '%prefix%&#75FF75Không phát hiện lỗi cấu hình nhiệm vụ.'
+  validation-header: '%prefix%&#FFD36AĐã phát hiện %amount% lỗi cấu hình:'
+  validation-line: '&#8A8A8A- &f%error%'
+  types-header: '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8- &#FFFFFFᴛʏᴘᴇꜱ'
+  types-line: '&#8A8A8A- &f%type% &7| target: %target_hint%'
+  update-available: '%prefix%&#FFD36ACó bản cập nhật mới: &f%latest% &#8A8A8A(bạn đang dùng %current%)&#FFD36A.'
+  update-current: '%prefix%&#75FF75Bạn đang dùng phiên bản mới nhất &f%current%&#75FF75.'
+  update-not-configured: '%prefix%&#FFD36AUpdate checker chưa có Spigot resource ID.'
+  version-line: '%prefix%&#FFFFFFPhiên bản: &e%current% &8| &#FFFFFFPlatform: &e%platform%'
+  help:
+  - '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8- &#FFFFFFʟệɴʜ'
+  - '&#8A8A8A/quest &7- Mở menu nhiệm vụ'
+  - '&#8A8A8A/quest active &7- Xem nhiệm vụ đang nhận'
+  - '&#8A8A8A/quest accept <id> &7- Nhận nhiệm vụ'
+  - '&#8A8A8A/quest cancel <id> &7- Hủy nhiệm vụ'
+  - '&#8A8A8A/quest complete <id> &7- Nhận thưởng khi hoàn tất'
+  - '&#8A8A8A/quest version &7- Xem phiên bản'
+  - '&#8A8A8A/quest admin ... &7- Công cụ quản trị'
+  - '&#8A8A8A/quest update &7- Kiểm tra cập nhật'
+  admin-help:
+  - '&#FFB84D&lᴋᴏʀᴀǫᴜᴇꜱᴛ &8- &#FFFFFFᴀᴅᴍɪɴ'
+  - '&#8A8A8A/quest admin reload &7- Reload cấu hình'
+  - '&#8A8A8A/quest admin reset &7- Random lại nhiệm vụ ngày'
+  - '&#8A8A8A/quest admin create ... &7- Tạo template nhiệm vụ'
+  - '&#8A8A8A/quest admin delete <id> &7- Xóa nhiệm vụ'
+  - '&#8A8A8A/quest admin progress <player> <id> [amount] &7- Hook quest CUSTOM'
+  - '&#8A8A8A/quest admin validate &7- Kiểm tra cấu hình'
+  - '&#8A8A8A/quest admin types &7- Danh sách loại nhiệm vụ'
+  reload-failed: '%prefix%&#FF5C5CKhông thể reload plugin. Hãy kiểm tra console.'
+  quest-action-usage: '%prefix%&#FFD36ADùng: &e/quest %action% <quest-id>'
+  invalid-material: '%prefix%&#FF5C5CMaterial không hợp lệ.'
+  admin-progress-no-change: '%prefix%&#FF5C5CKhông thể cộng tiến độ. Người chơi phải nhận quest và quest ID phải hợp lệ.'
+  update-disabled: '%prefix%&#FFD36AUpdate checker đang bị tắt trong config.yml.'
+  update-checking: '%prefix%&#FFD36AĐang kiểm tra phiên bản mới...'
+  update-check-failed: '%prefix%&#FF5C5CKhông thể kiểm tra cập nhật lúc này.'
+gui:
+  title: '&#FFB84D&lᴋᴏʀᴀ ǫᴜᴇꜱᴛ'
+  filler-name: '&r'
+  info:
+    name: '&#FFD36Aᴛʜôɴɢ ᴛɪɴ ʜôᴍ ɴᴀʏ'
+    lore:
+    - '&#8A8A8AReset sau: &f%reset_time%'
+    - '&#8A8A8ATổng nhiệm vụ: &f%daily_total%'
+    - ''
+    - '&#75FF75Dễ: &f%easy_count% &8(&f%easy_chance%%%&8)'
+    - '&#FFD36ATrung bình: &f%medium_count% &8(&f%medium_chance%%%&8)'
+    - '&#FF5C5CKhó: &f%hard_count% &8(&f%hard_chance%%%&8)'
+  active:
+    name: '&#72D6FFɴʜɪệᴍ ᴠụ đᴀɴɢ ɴʜậɴ'
+    lore:
+    - '&#8A8A8A/quest active để xem nhanh.'
+    - '&#8A8A8AChuột trái: nhận hoặc hoàn thành.'
+    - '&#8A8A8AChuột phải: hủy nhiệm vụ đã nhận.'
+  difficulty:
+    easy:
+      name: '&#75FF75ᴅễ'
+      lore:
+      - '&#8A8A8AHôm nay: &f%daily_count%'
+      - '&#8A8A8ATỉ lệ random: &f%daily_weight%%%'
+    medium:
+      name: '&#FFD36Aᴛʀᴜɴɢ ʙìɴʜ'
+      lore:
+      - '&#8A8A8AHôm nay: &f%daily_count%'
+      - '&#8A8A8ATỉ lệ random: &f%daily_weight%%%'
+    hard:
+      name: '&#FF5C5Cᴋʜó'
+      lore:
+      - '&#8A8A8AHôm nay: &f%daily_count%'
+      - '&#8A8A8ATỉ lệ random: &f%daily_weight%%%'
+  quest:
+    details:
+    - ''
+    - '&#8A8A8ANhiệm vụ: &f%quest_name%'
+    - '&#8A8A8ATiến độ: &f%progress%&7/&f%required%'
+    - '&#8A8A8AĐộ khó: %difficulty_name%'
+    state:
+      completed:
+      - ''
+      - '&#FF5C5CĐã hoàn thành trong chu kỳ hiện tại.'
+      ready:
+      - ''
+      - '&#75FF75Chuột trái để nhận thưởng.'
+      active:
+      - ''
+      - '&#72D6FFĐang nhận nhiệm vụ này.'
+      - '&#FFD36AChuột phải để hủy.'
+      available:
+      - ''
+      - '&#75FF75Chuột trái để nhận nhiệm vụ.'
+objective-target-hints:
+  KILL: EntityType hoặc ANY
+  BREAK: Material hoặc ANY
+  PLACE: Material hoặc ANY
+  CRAFT: Material hoặc ANY
+  FISH: Material/EntityType hoặc ANY
+  ENCHANT: Material hoặc ANY
+  BREED: EntityType hoặc ANY
+  TAME: EntityType hoặc ANY
+  CONSUME: Material hoặc ANY
+  SMELT: Material hoặc ANY
+  SHEAR: EntityType hoặc ANY
+  CUSTOM: Bất kỳ chuỗi nào
+validation-errors:
+  missing-quests-section: quests.yml đang thiếu mục quests.
+  invalid-quest-id: Quest %quest_id% có ID không hợp lệ.
+  invalid-quest: Quest %quest_id% có dữ liệu không hợp lệ. Xem console để biết chi tiết.
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b

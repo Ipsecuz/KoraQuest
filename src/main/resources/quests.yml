@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # KoraQuest 1.1 - Quest Definitions
 # Author: Ipsecuz_
 #
@@ -87,6 +88,20 @@ bundled-packs:
 quests:
   easy_zombie_cleaner:
     cycle: daily
+=======
+# KoraQuest - Quest Definitions
+# Built-in types: KILL, BREAK, PLACE, CRAFT, FISH, ENCHANT, BREED, TAME, CONSUME, SMELT, SHEAR, CUSTOM
+# CUSTOM can represent any objective. Progress it with:
+# /quest admin progress <player> <quest-id> [amount]
+# Every quest title, lore and reward command is configured directly here.
+# rewards: is only a list of custom console commands. KoraQuest does not require Vault or a specific economy/crate plugin.
+# Supported placeholders: %player%, %uuid%, %quest_id%, %quest_name%, %difficulty%, %difficulty_name%, %progress%, %required%
+# Optional random number syntax inside a command: {random:min-max}
+# Example: 'eco give %player% {random:100000-200000}'
+
+quests:
+  easy_zombie_cleaner:
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: KILL
     target: ZOMBIE
@@ -100,7 +115,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   easy_skeleton_guard:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: KILL
     target: SKELETON
@@ -114,7 +132,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   easy_stone_miner:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: BREAK
     target: STONE
@@ -128,7 +149,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   easy_cobble_worker:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: BREAK
     target: COBBLESTONE
@@ -142,7 +166,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   easy_oak_logger:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: BREAK
     target: OAK_LOG
@@ -156,7 +183,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   easy_coal_runner:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: BREAK
     target: COAL_ORE
@@ -170,7 +200,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   easy_fisher:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: FISH
     target: ANY
@@ -184,7 +217,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   easy_torch_builder:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: PLACE
     target: TORCH
@@ -198,7 +234,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   easy_bread_baker:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: CRAFT
     target: BREAD
@@ -212,7 +251,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   easy_farmer:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: easy
     type: BREAK
     target: WHEAT
@@ -226,7 +268,10 @@ quests:
       - 'eco give %player% {random:100000-200000}'
       - 'mc give %player% 50'
   medium_zombie_hunter:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: KILL
     target: ZOMBIE
@@ -240,7 +285,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   medium_creeper_control:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: KILL
     target: CREEPER
@@ -254,7 +302,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   medium_iron_miner:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: BREAK
     target: IRON_ORE
@@ -268,7 +319,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   medium_diamond_spark:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: BREAK
     target: DIAMOND_ORE
@@ -282,7 +336,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   medium_deepslate_grind:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: BREAK
     target: DEEPSLATE
@@ -296,7 +353,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   medium_enderman_watch:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: KILL
     target: ENDERMAN
@@ -310,7 +370,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   medium_fishing_trip:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: FISH
     target: ANY
@@ -324,7 +387,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   medium_lantern_path:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: PLACE
     target: LANTERN
@@ -338,7 +404,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   medium_golden_cook:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: CRAFT
     target: GOLDEN_APPLE
@@ -352,7 +421,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   medium_enchanter:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: medium
     type: ENCHANT
     target: ANY
@@ -366,7 +438,10 @@ quests:
       - 'eco give %player% {random:500000-1000000}'
       - 'mc give %player% 150'
   hard_blaze_slayer:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: KILL
     target: BLAZE
@@ -380,7 +455,10 @@ quests:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
   hard_wither_guard:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: KILL
     target: WITHER_SKELETON
@@ -394,7 +472,10 @@ quests:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
   hard_ancient_debris:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: BREAK
     target: ANCIENT_DEBRIS
@@ -408,7 +489,10 @@ quests:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
   hard_ender_trial:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: KILL
     target: ENDERMAN
@@ -422,7 +506,10 @@ quests:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
   hard_piglin_farm:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: KILL
     target: PIGLIN
@@ -436,7 +523,10 @@ quests:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
   hard_diamond_rush:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: BREAK
     target: DIAMOND_ORE
@@ -450,7 +540,10 @@ quests:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
   hard_netherite_forge:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: CRAFT
     target: NETHERITE_INGOT
@@ -464,7 +557,10 @@ quests:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
   hard_master_enchanter:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: ENCHANT
     target: ANY
@@ -478,7 +574,10 @@ quests:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
   hard_deep_fishing:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: FISH
     target: ANY
@@ -492,7 +591,10 @@ quests:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
   hard_obsidian_breaker:
+<<<<<<< HEAD
     cycle: daily
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
     difficulty: hard
     type: BREAK
     target: OBSIDIAN
@@ -505,6 +607,7 @@ quests:
     rewards:
       - 'eco give %player% {random:2000000-5000000}'
       - 'mc give %player% 300'
+<<<<<<< HEAD
 
   weekly_playtime_guardian:
     cycle: weekly
@@ -1072,3 +1175,5 @@ quests:
     rewards:
       - 'eco give %player% 12000000'
       - 'mc give %player% 2500'
+=======
+>>>>>>> dd95e1cdbf70c284d2b8d6ce7b0dc22d4287233b
